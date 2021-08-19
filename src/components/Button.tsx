@@ -1,9 +1,13 @@
-import React from 'react';
+import { ButtonHTMLAttributes } from 'react';
 import styled from 'styled-components';
 
-export default function Button({children, ...props}) {
+interface ButtonProps extends ButtonHTMLAttributes<HTMLButtonElement>{
+  children: any,
+ };
+
+export default function Button({children, ...props}: ButtonProps) {
   return (
-    <StyledButton>{children}</StyledButton>
+    <StyledButton {...props}>{children}</StyledButton>
   )
 }
 

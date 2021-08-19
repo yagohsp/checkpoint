@@ -1,4 +1,5 @@
 import { createGlobalStyle, css } from 'styled-components';
+import '../assets/fonts/fonts.css'
 
 const reset = css`
   * {
@@ -195,7 +196,6 @@ export default createGlobalStyle`
   
   ${config}
 
-  @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap');
 
   html {
     font-family: "Roboto", sans-serif;

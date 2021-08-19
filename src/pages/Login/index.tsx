@@ -1,9 +1,10 @@
 import React from "react";
 import { useForm } from "react-hook-form";
 import Button from "../../components/Button";
-import TextInput from "../../components/TextInput";
+import { TextInput } from "../../components/form";
+import { createUser } from "../../services/user/authentication";
 
-import { Content, LoginWrapper, Title } from "./styles";
+import { LoginForm, LoginWrapper, Title } from "./styles";
 
 export default function Login() {
   const {
@@ -12,9 +13,13 @@ export default function Login() {
     formState: { errors },
   } = useForm();
 
+  const onSubmit = ({ email, password }: { email: string, password: string }) => {
+    createUser(email, password);
+  };
+
   return (
     <LoginWrapper>
-      <Content>
+      <LoginForm onSubmit={handleSubmit(onSubmit)}>
         <Title>Login</Title>
 
         <TextInput
@@ -25,12 +30,12 @@ export default function Login() {
         <TextInput
           label="Senha"
           placeholder="*********"
-          {...register("senha")}
+          type="password"
+          {...register("password")}
         />
 
         <Button>Entrar</Button>
-
-      </Content>
+      </LoginForm>
     </LoginWrapper>
   );
 }

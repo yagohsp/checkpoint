@@ -6,10 +6,10 @@ export const LoginWrapper = styled.div`
   display: flex;
   align-items: center;
   justify-content: center;
-  background-color: #a700fa;
+  background: linear-gradient(to bottom right, #8100c2, #a700fa)                        ;
 `;
 
-export const Content = styled.div`
+export const LoginForm = styled.form`
   width: 25rem;
   display: flex;
   flex-direction: column;
