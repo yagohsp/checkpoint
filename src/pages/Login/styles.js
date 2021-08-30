@@ -1,3 +1,4 @@
+import { Link } from 'react-router-dom';
 import styled from 'styled-components';
 
 export const LoginWrapper = styled.div`
@@ -10,7 +11,7 @@ export const LoginWrapper = styled.div`
 `;
 
 export const LoginForm = styled.form`
-  width: 25rem;
+  width: 32rem;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -18,9 +19,28 @@ export const LoginForm = styled.form`
   box-shadow: 0px 2px 20px 5px rgba(0,0,0,.2);
   padding: 3rem;
   border-radius: 1rem;
+  input{
+    margin-top: 1rem;
+  }
+  @media screen and (max-width: 997px) {
+    max-width: 90%
+  }
 `;
 
 export const Title = styled.h1`
   color: #32014a;
   margin-bottom: 2.8rem;
 `;
+
+export const CreateAccount = styled(Link)`
+  font-size: 1.4rem;
+  font-weight: 300;
+  color: #8100c2;
+  margin-left: auto;
+  margin-top: 1rem;
+  @media screen and (min-width: 998px) {
+    &:hover{
+      text-decoration: underline;
+    }
+  ;
+`

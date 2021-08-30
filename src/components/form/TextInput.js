@@ -1,14 +1,11 @@
-import React, { InputHTMLAttributes } from "react";
+import React from "react";
 import styled from "styled-components";
 
-interface TextInputProps extends InputHTMLAttributes<HTMLInputElement> {
-  label: string;
-}
-
 const TextInput = React.forwardRef(
-  ({ label, ...props }: TextInputProps, ref: React.ForwardedRef<any>) => {
+  ({ label, error, ...props }) => {
     return (
       <TextInputWrapper>
+        {error && <Error>{error}</Error>}
         <Input {...props} />
         {label && <Label>{label}</Label>}
       </TextInputWrapper>
@@ -20,8 +17,12 @@ export default TextInput;
 
 const TextInputWrapper = styled.div`
   width: 100%;
+  position: relative;
   display: flex;
   flex-direction: column-reverse;
+  span + input{
+    border-bottom-color: #ff0033 !important; 
+  }
 `;
 
 const Label = styled.label`
@@ -51,4 +52,11 @@ const Input = styled.input`
   &:focus ~ label {
     color: #32014a;
   }
+`;
+
+const Error = styled.span`
+  position: absolute;
+  font-size: 1.1rem;
+  color: #ff0033;
+  bottom: .8rem;
 `;
