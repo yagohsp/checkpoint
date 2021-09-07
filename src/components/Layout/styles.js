@@ -19,22 +19,3 @@ export const Grid = styled.div`
     margin: 0 auto;
   }
 `;
-
-export const SideMenu = styled.div`
-  display: flex;
-  flex-direction: column;
-  @media screen and (min-width: 998px) {
-    width: 30rem;
-    position: sticky;
-    top: 3rem;
-    align-self: flex-start
-  }
-`;
-
-export const SearchBar = styled.input`
-  height: 3rem;
-  outline: 0;
-  &::placeholder{
-    color: #999999;
-  }
-`

@@ -1,18 +1,20 @@
-import React from 'react';
-import { Filled } from '../';
-import { Grid, Background, SideMenu, SearchBar } from './styles';
+import React from "react";
+
+import SideMenu from "./SideMenu";
+import Friends from "./Friends";
+import {
+  Grid,
+  Background,
+} from "./styles";
 
 export default function Layout({ children }) {
   return (
     <Background>
       <Grid>
-        <SideMenu>
-          <Filled removeSide="right">
-            <SearchBar placeholder="Buscar"/>
-          </Filled>
-        </SideMenu>
+        <SideMenu />
         {children}
+        <Friends />
       </Grid>
     </Background>
-  )
+  );
 }

@@ -199,24 +199,17 @@ export default createGlobalStyle`
 
   html {
     font-family: "Roboto", sans-serif;
+    
     font-size: 62.5%;
-    body{
-      font-size: 1.6rem;
-      @media screen and (max-width: 1680px){
-        font-size: 1.5rem;
-      }
-      @media screen and (max-width: 1440px){
-        font-size: 1.3rem;
-      }
-      @media screen and (max-width: 1280px){
-        font-size: 1.2rem;
-      }
-      @media screen and (max-width: 1024px){
-        font-size: 1.1rem;
-      }
-      @media screen and (max-width: 997px){
-        font-size: 1.6rem;
-      }
+    @media screen and (max-width: 1680px){
+      font-size: 60%;
     }
+    @media screen and (max-width: 1369px){
+      font-size: 57.5%;
+    }
+  }
+
+  body {
+    font-size: 1.6rem;
   }
 `;
