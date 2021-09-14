@@ -1,6 +1,6 @@
 import React from "react";
 
-import SideMenu from "./SideMenu";
+import Menu from "./Menu";
 import Friends from "./Friends";
 import {
   Grid,
@@ -11,7 +11,7 @@ export default function Layout({ children }) {
   return (
     <Background>
       <Grid>
-        <SideMenu />
+        <Menu />
         {children}
         <Friends />
       </Grid>

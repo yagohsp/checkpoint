@@ -10,6 +10,8 @@ export default function index({ children, removeSide }) {
 }
 
 export const Filled = styled.div`
+  height: 100%;
+  width: 100%;
   position: relative;
   background-color: #23012C;
   border: 2px solid #834F95;

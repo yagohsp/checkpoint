@@ -25,7 +25,7 @@ export const Friend = styled.button`
   height: 100%;
   display: flex;
   align-items: center;
-  padding: 1.2rem 0 1.2rem 1.2rem;
+  padding: 1rem 0 1rem 1rem;
   border-right: 1px solid #834f95;
   border-left: 1px solid #834f95;
   border-bottom: 2px solid #834f95;

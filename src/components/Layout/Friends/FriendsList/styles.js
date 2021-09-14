@@ -1,5 +1,4 @@
 import styled from "styled-components";
-import { Filled } from "../../../Filled";
 
 export const Friends = styled.div`
   width: 100%;
