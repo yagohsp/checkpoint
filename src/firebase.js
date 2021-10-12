@@ -1,14 +1,15 @@
 import firebase from "firebase/app";
 import "firebase/auth";
+import "firebase/firestore";
 
-const firebaseApp = firebase.initializeApp({
-  apiKey: "AIzaSyCZytO3JOoENwn3S3rSi7vQC32wl0Hhyk8",
-  authDomain: "checkpoint-59fd0.firebaseapp.com",
-  projectId: "checkpoint-59fd0",
-  storageBucket: "checkpoint-59fd0.appspot.com",
-  messagingSenderId: "679006618977",
-  appId: "1:679006618977:web:0206669841b4b1fd5c7120",
-  measurementId: "G-PEFXJMCP70",
+const App = firebase.initializeApp({
+  apiKey: "AIzaSyC7zfTXibAnlZEC20rWGz4Uk3-l4n2CHVo",
+  authDomain: "checkpoint-socialnetwork.firebaseapp.com",
+  projectId: "checkpoint-socialnetwork",
+  storageBucket: "checkpoint-socialnetwork.appspot.com",
+  messagingSenderId: "910853643133",
+  appId: "1:910853643133:web:5deba1e7bc35c289e74a14",
+  measurementId: "G-L25EHVKQD1"
 });
 
-export default firebaseApp;
+export default App;

@@ -1,6 +1,6 @@
 import firebaseApp from "../../firebase";
 
-const login = (email, password) => {
+const login = async (email, password) => {
   return firebaseApp
     .auth()
     .signInWithEmailAndPassword(email, password)
@@ -28,8 +28,8 @@ const login = (email, password) => {
     });
 };
 
-const createUser = (email, password) => {
-  firebaseApp
+const createUser = async (email, password) => {
+  return firebaseApp
     .auth()
     .createUserWithEmailAndPassword(email, password)
     .then((response) => {

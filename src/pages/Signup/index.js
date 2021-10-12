@@ -4,9 +4,9 @@ import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 
 import { TextInput, Button } from "../../components";
-import { CreateAccount, LoginForm, LoginWrapper, Title } from "./styles";
-import loginValidation from "./loginValidation";
-import { login } from "../../services/user/authentication";
+import { LoginAccount, SignupForm, SignupWrapper, Title } from "./styles";
+import signupValidation from "./signupValidation";
+import { createUser } from "../../services/user/authentication";
 import firebaseApp from "../../firebase";
 
 export default function Login() {
@@ -28,12 +28,12 @@ export default function Login() {
     handleSubmit,
     formState: { errors },
   } = useForm({
-    resolver: yupResolver(loginValidation),
+    resolver: yupResolver(signupValidation),
   });
 
   const onSubmit = async ({ email, password }) => {
     setIsLoading(true);
-    const response = await login(email, password);
+    const response = await createUser(email, password);
     setIsLoading(false);
     if (response?.error) {
       setRequestError(response);
@@ -46,9 +46,9 @@ export default function Login() {
   };
 
   return (
-    <LoginWrapper>
-      <LoginForm onSubmit={handleSubmit(onSubmit)} autoComplete="off">
-        <Title>Login</Title>
+    <SignupWrapper>
+      <SignupForm onSubmit={handleSubmit(onSubmit)} autoComplete="off">
+        <Title>Signup</Title>
 
         <TextInput
           label="E-mail"
@@ -71,15 +71,26 @@ export default function Login() {
           {...register("password")}
         />
 
+        <TextInput
+          label="Repetir senha"
+          placeholder="*********"
+          type="password"
+          error={
+            errors.passwordConfirmation?.message ||
+            (requestError.type === "passwordConfirmation" && requestError.message)
+          }
+          {...register("passwordConfirmation")}
+        />
+
         <Button
           isLoading={isLoading}
           error={requestError.type === "default" && requestError.message}
         >
-          Entrar
+          Cadastrar-se e entrar
         </Button>
 
-        <CreateAccount to="/signup">Criar conta</CreateAccount>
-      </LoginForm>
-    </LoginWrapper>
+        <LoginAccount to="/login">Já possui conta?</LoginAccount>
+      </SignupForm>
+    </SignupWrapper>
   );
 }

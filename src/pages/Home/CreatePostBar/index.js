@@ -1,7 +1,6 @@
 import React from "react";
 
 import { IoSend } from "react-icons/io5";
-import { ImAttachment } from "react-icons/im";
 import { AiOutlineGif, AiOutlineVideoCamera } from "react-icons/ai";
 import { ImImage  } from "react-icons/im";
 
