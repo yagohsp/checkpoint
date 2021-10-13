@@ -2,11 +2,11 @@ import React from "react";
 import styled from "styled-components";
 
 const TextInput = React.forwardRef(
-  ({ label, error, ...props }, ref) => {
+  ({ label, error, customInput: CustomInput, ...props }, ref) => {
     return (
       <TextInputWrapper>
         {error && <Error>{error}</Error>}
-        <Input ref={ref} {...props} />
+        {CustomInput ? <CustomInput /> : <Input ref={ref} {...props} />}
         {label && <Label>{label}</Label>}
       </TextInputWrapper>
     );

@@ -1,3 +1,4 @@
 import TextInput from './TextInput';
+import FileDropzone from './FileDropzone';
 
-export { TextInput }
+export { TextInput, FileDropzone }

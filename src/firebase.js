@@ -12,4 +12,6 @@ const App = firebase.initializeApp({
   measurementId: "G-L25EHVKQD1"
 });
 
+export const db = firebase.firestore();
+
 export default App;
