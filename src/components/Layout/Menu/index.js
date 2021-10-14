@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useContext } from "react";
 import {
   IoSearch,
   IoHome,
@@ -10,7 +10,7 @@ import { IoMdClose, IoMdMenu } from "react-icons/io";
 import { BiTrendingUp } from "react-icons/bi";
 import { BsThreeDots } from "react-icons/bs";
 
-import { Filled } from "../..";
+import { Filled, ProfilePhoto } from "../..";
 import {
   MenuWrapper,
   SearchBar,
@@ -21,10 +21,12 @@ import {
   MoreButton,
   Profile,
   CloseMenu,
-  MobileHeader,
+  MobileHeader
 } from "./styles";
+import { AuthContext } from "../../../providers/Auth";
 
 export default function Menu() {
+  const {currentUserData} = useContext(AuthContext);
   const [showMenu, setShowMenu] = useState(false);
 
   return (
@@ -75,11 +77,8 @@ export default function Menu() {
         </MenuList>
 
         <Profile>
-          <img
-            src="https://pbs.twimg.com/media/Eyua9A-WEAIsVNR?format=jpg&name=medium"
-            alt="eu"
-          />
-          <span>Yshen</span>
+          <ProfilePhoto />
+          <span>{currentUserData?.Nome}</span>
           <MoreButton>
             <BsThreeDots />
           </MoreButton>

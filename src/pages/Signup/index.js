@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useContext } from "react";
 import { useHistory } from "react-router-dom";
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
@@ -7,21 +7,20 @@ import { TextInput, Button } from "../../components";
 import { LoginAccount, SignupForm, SignupWrapper, Title } from "./styles";
 import signupValidation from "./signupValidation";
 import { createUser } from "../../services/user/authentication";
-import firebaseApp from "../../firebase";
+import { AuthContext } from "../../providers/Auth";
 
 export default function Login() {
+  const {currentUser} = useContext(AuthContext);
   const [requestError, setRequestError] = useState({});
   const history = useHistory();
 
   const [isLoading, setIsLoading] = useState(false);
 
   useEffect(() => {
-    firebaseApp.auth().onAuthStateChanged((user) => {
-      if (user) {
-        history.push("/");
-      }
-    });
-  }, [history]);
+    if (currentUser) {
+      history.push("/");
+    }
+  }, [currentUser, history]);
 
   const {
     register,

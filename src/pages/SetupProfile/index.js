@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect, useContext } from "react";
 import { useHistory } from "react-router-dom";
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
@@ -8,13 +8,21 @@ import { ProfileForm, ProfileWrapper, Title } from "./styles";
 import profileValidation from "./profileValidation";
 import { createProfile } from "../../services/user/profile";
 import { fileToBase64 } from "../../util/files";
+import { AuthContext } from "../../providers/Auth";
 
 export default function Login() {
+  const {currentUserData} = useContext(AuthContext);
   const [requestError, setRequestError] = useState({});
   const [photo, setPhoto] = useState(null);
   const history = useHistory();
 
   const [isLoading, setIsLoading] = useState(false);
+
+  useEffect(() => {
+    if (currentUserData) {
+      history.push("/");
+    }
+  }, [currentUserData, history]);
 
   const {
     register,
