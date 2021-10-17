@@ -1,6 +1,6 @@
 import { useState, useEffect, useCallback } from "react";
 
-import { getPosts } from "../../services/feed/posts";
+import { getPosts } from "../../../services/feed/posts";
 
 export default function Posts() {
     const [data, setData] = useState([]);

@@ -1,8 +1,33 @@
+import firebase from "firebase/app";
 import { db } from "../../firebase";
+import { fileToBase64 } from "../../util/files";
 
 const getPosts = async () => {
-  const data = await db.collection("posts").get();
+  const data = await db.collection("posts").orderBy("Data", "desc").get();
   return data?.docs;
 };
 
-export { getPosts };
+const createPost = async (data) => {
+  return await db.collection("posts").doc().set({
+    "Conteudo": data.description,
+    "Data": firebase.firestore.Timestamp.fromDate(new Date()),
+    "Imagem": data.file ? await fileToBase64(data.file) : null,
+    "Usuario": db.doc(`usuários/${data.uid}`),
+    "Comentarios": []
+  })
+  .catch((error) => {
+    switch (error.code) {
+      case "auth/too-many-requests":
+        return {
+          error: true,
+          type: "default",
+          message:
+            "Muitas tentativas foram realizadas, tente novamente mais tarde",
+        };
+      default:
+        return { error: false, type: "", message: "" };
+    }
+  });
+};
+
+export { getPosts, createPost };

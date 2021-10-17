@@ -8,7 +8,7 @@ import {
   Poster,
   Profile,
 } from "./styles";
-import PostUserDataHook from "../../../hooks/feed/postUserData";
+import PostUserDataHook from "../../../hooks/feed/list/postUserData";
 
 export default function PostElement(props) {
   const {post} = props;

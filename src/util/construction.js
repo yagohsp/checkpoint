@@ -1,5 +1,6 @@
 
 import { db } from "../firebase";
+import firebase from "firebase/app";
 
 const createStaticPost = async () => {
   return await db.collection("posts").doc().set({
@@ -10,9 +11,16 @@ const createStaticPost = async () => {
                     auctor massa. Integer consectetur quis mauris et rutrum. Sed               
                     imperdiet tempus nulla, ac euismod dolor molestie gravida. Nunc               
                     mollis ex id dolor congue efficitur.`,
-        "Data": null,
-        "Imagens": [],
-        "Usuario": db.doc("usuários/LxhoblGK0pUSU18HoMnQsdL2Lt93")
+        "Data": firebase.firestore.Timestamp.fromDate(new Date()),
+        "Imagem": null,
+        "Usuario": db.doc("usuários/LxhoblGK0pUSU18HoMnQsdL2Lt93"),
+        "Comentarios": [{
+          "Usuario": db.doc("usuários/LxhoblGK0pUSU18HoMnQsdL2Lt93"),
+          "Comentario": "Legal"
+        },{
+          "Usuario": db.doc("usuários/LxhoblGK0pUSU18HoMnQsdL2Lt93"),
+          "Comentario": "Impressionante"
+        }]
     })
     .catch((error) => {
       switch (error.code) {

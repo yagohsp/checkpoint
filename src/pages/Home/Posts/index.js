@@ -5,10 +5,9 @@ import {
   PostsWrapper,
 } from "./styles";
 import PostElement from "./Post";
-import PostsHook from "../../../hooks/feed/posts";
 
-export default function Posts() {
-  const {data: posts} = PostsHook();
+export default function Posts(props) {
+  const {data: posts} = props;
 
   return (
     <PostsWrapper>

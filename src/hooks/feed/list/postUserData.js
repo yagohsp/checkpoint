@@ -1,6 +1,6 @@
 import { useState, useEffect, useCallback } from "react";
 
-import { getDocReference } from "../../services";
+import { getDocReference } from "../../../services";
 
 export default function PostUserData(props) {
     const [data, setData] = useState({});

@@ -10,12 +10,26 @@ export const BarWrapper = styled.div`
   border-top: 1px solid #834F95;
   padding: .5rem 3rem .5rem 1.5rem;
   @media screen and (min-width: 998px) {
-    height: 10rem;
+    height: 11rem;
   }
   @media screen and (max-width: 997px) {
     padding-top: 80px;
   }
-` 
+`;
+
+export const PostForm = styled.form`
+`;
+
+export const PostFormError = styled.h6`
+  position: absolute;
+  padding-left: 1em;
+  color: red;
+`;
+
+export const InputDiv = styled.div`
+  padding-left: 1em;
+  width: 100%;
+`;
 
 export const InputWrapper = styled.div`
   width: 100%;
@@ -60,14 +74,48 @@ export const PostButton = styled.button`
   }
 `;
 
+export const DownsideDiv = styled.div`
+  display: flex;
+  padding-top: 0.5em;
+`;
+
 export const AttachmentButton = styled.button`
   width: fit-content;
   display: flex;
   align-items: center;
-  padding: 1rem;
+  margin: 1rem;
   margin-left: 5rem;
   &:hover svg{
     fill: #bc54e0;
+  }
+  svg{
+    fill: #acacac;
+    transition: fill .15s ease;
+    &:not(:last-of-type){
+      margin-right: 1.5rem;
+    }
+  }
+`;
+
+export const UploadLabel = styled.label`
+  display: flex;
+`;
+
+export const FileUpload = styled.input`
+  display: none;
+`;
+
+export const FileName = styled.h6`
+  padding-top: 1em;
+`;
+
+export const RemoveFileButton = styled.button`
+  width: fit-content;
+  display: flex;
+  align-items: center;
+  margin: 1rem;
+  &:hover svg{
+    fill: #c8000b;
   }
   svg{
     fill: #acacac;
