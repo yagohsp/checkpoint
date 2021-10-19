@@ -1,15 +1,14 @@
-import React, { useContext } from "react";
+import React from "react";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { useForm } from "react-hook-form";
 
 import { IoSend } from "react-icons/io5";
 
-import { AuthContext } from "../../../providers/Auth";
 import postValidation from "./postValidation";
 import { ProfilePhoto } from "../../../components";
 import File from "../../../hooks/feed/create/file";
+import CreatePost from "../../../hooks/feed/create/post";
 import Attachment from "./attachment";
-import { createPost } from "../../../services/feed/posts";
 import {
   BarWrapper,
   PostForm,
@@ -22,7 +21,6 @@ import {
 } from "./styles";
 
 export default function CreatePostBar(props) {
-  const {currentUser} = useContext(AuthContext);
   const {
     file,
     cleanFile,
@@ -38,16 +36,14 @@ export default function CreatePostBar(props) {
     resolver: yupResolver(postValidation),
   });
 
-  const cleanForm = () => {
-    reset();
-    cleanFile();
-  };
-
-  const onSubmit = async (data) => {
-    await createPost({...data, file, uid: currentUser.uid});
-    cleanForm();
-    props?.refresh();
-  };
+  const { 
+    onSubmit
+  } = CreatePost({
+    reset,
+    file,
+    cleanFile,
+    refresh: props?.refresh
+  });
 
   return (
     <BarWrapper>

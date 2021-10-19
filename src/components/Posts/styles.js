@@ -1,6 +1,6 @@
 import styled from "styled-components";
 
-import { Filled } from '../../../components/Filled';
+import { Filled } from '../Filled';
 
 export const PostsWrapper = styled.div`
   margin-top: 2rem;
@@ -36,8 +36,10 @@ export const Description = styled.div`
 `;
 
 export const Buttons = styled.div`
+  display: flex;
   margin-top: 2rem;
   button{
+    display: flex;
     padding: 1rem;
     margin-right: 6rem;
     &:hover{
@@ -50,5 +52,18 @@ export const Buttons = styled.div`
       height: 2.5rem;
       transition: fill .15s ease;
     }
+    h3{
+      padding-left: 0.5em;
+    }
   }
+`;
+
+export const LikeButton = styled.button`
+  svg{
+    fill: ${(props) => props?.liked && "#33b1e6"};
+  }
+`;
+
+export const LikeCount = styled.h3`
+  width: fit-content;
 `;

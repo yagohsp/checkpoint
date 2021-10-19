@@ -1,6 +1,6 @@
-const getDocReference = async (reference) => {
+const getDocReference = async (reference, object) => {
   const data = await reference.get();
-  return data?.data();
+  return object ? data : data?.data();
 };
 
 export { getDocReference };

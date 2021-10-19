@@ -20,7 +20,8 @@ const createStaticPost = async () => {
         },{
           "Usuario": db.doc("usuários/LxhoblGK0pUSU18HoMnQsdL2Lt93"),
           "Comentario": "Impressionante"
-        }]
+        }],
+        "Curtidas": []
     })
     .catch((error) => {
       switch (error.code) {

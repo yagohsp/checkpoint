@@ -17,7 +17,7 @@ export default function Posts(props) {
 
           return (
             <Post key={key}>
-              <PostElement post={post} />
+              <PostElement post={post} uid={props.id} />
             </Post>
           );
         }

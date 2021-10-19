@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useCallback } from "react";
 import firebase, { db } from "../firebase";
 
 export const AuthContext = React.createContext();
@@ -8,22 +8,28 @@ export const AuthProvider = ({ children }) => {
   const [currentUserData, setCurrentUserData] = useState(null);
   const [loading, setLoading] = useState(true);
 
+  const sync = useCallback(async (user) => {
+    if(!user && !currentUser) return;
+    const data = await db.collection("usuários").doc(user ? user.uid : currentUser.uid).get();
+    setCurrentUserData(data.data());
+  }, [currentUser]);
+
   useEffect(() => {
     firebase.auth().onAuthStateChanged(async (user) => {
       if(user) {
-        const data = await db.collection("usuários").doc(user.uid).get();
-        setCurrentUserData(data.data());
+        await sync(user);
       }
-      setCurrentUser(user)
-      setLoading(false)
+      setCurrentUser(user);
+      setLoading(false);
     });
-  }, []);
+  }, [sync]);
 
   return (
     <AuthContext.Provider
       value={{
         currentUser,
-        currentUserData
+        currentUserData,
+        sync
       }}
     >
       {!loading && children}

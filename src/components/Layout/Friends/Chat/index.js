@@ -1,12 +1,10 @@
 import React from "react";
-import { AiOutlineClose } from "react-icons/ai";
 import { IoMdSend } from "react-icons/io";
 
 import {
   ChatWrapper,
   FriendsScroll,
   Friend,
-  CloseFriend,
   Messages,
   InputMessageWrapper,
   InputMessage,
@@ -23,9 +21,6 @@ export default function Chat() {
             alt="a"
           />
           <span>Ewndr</span>
-          <CloseFriend>
-            <AiOutlineClose />
-          </CloseFriend>
         </Friend>
         <Friend>
           <img
@@ -33,19 +28,27 @@ export default function Chat() {
             alt="a"
           />
           <span>Belizard</span>
-          <CloseFriend>
-            <AiOutlineClose />
-          </CloseFriend>
         </Friend>
         <Friend>
           <img
-            src="https://cdn.discordapp.com/avatars/239206719056510977/46226074baee6e259a23652ee2884179.png?size=128"
+            src="https://64.media.tumblr.com/fdd8b2018c5b46df206712b1f59a9077/20cf06aa31c5db0f-91/s250x400/bc669c2fa0ce09c7278ce2994e3ca73406ed7ef8.png"
             alt="a"
           />
           <span>Yshen</span>
-          <CloseFriend>
-            <AiOutlineClose />
-          </CloseFriend>
+        </Friend>
+        <Friend>
+          <img
+            src="https://64.media.tumblr.com/fdd8b2018c5b46df206712b1f59a9077/20cf06aa31c5db0f-91/s250x400/bc669c2fa0ce09c7278ce2994e3ca73406ed7ef8.png"
+            alt="a"
+          />
+          <span>Teddy</span>
+        </Friend>
+        <Friend>
+          <img
+            src="https://64.media.tumblr.com/fdd8b2018c5b46df206712b1f59a9077/20cf06aa31c5db0f-91/s250x400/bc669c2fa0ce09c7278ce2994e3ca73406ed7ef8.png"
+            alt="a"
+          />
+          <span>X47</span>
         </Friend>
       </FriendsScroll>
 

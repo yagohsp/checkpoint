@@ -3,7 +3,7 @@ import React from 'react';
 import { Feed } from './styles';
 
 import CreatePostBar from './CreatePostBar';
-import Posts from './Posts';
+import Posts from '../../components/Posts';
 import PostsHook from "../../hooks/feed/list/posts";
 
 export default function Home() {
