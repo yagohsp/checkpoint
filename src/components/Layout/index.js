@@ -5,7 +5,7 @@ import Friends from "./Friends";
 import { Grid, Background } from "./styles";
 
 export default function Layout({ children }) {
-  const [isDesktop, setIsDesktop] = useState(window.matchMedia("(min-width: 997px)").matches)
+  const [isDesktop] = useState(window.matchMedia("(min-width: 997px)").matches)
 
   return (
     <Background>

@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 import { BiLike, BiCommentDetail } from "react-icons/bi";
 import { IoMdAdd, IoMdCheckmarkCircleOutline } from "react-icons/io";
 
@@ -11,10 +11,11 @@ import {
   Profile,
   PostContent,
 } from "./styles";
-import PostUserDataHook from "../../hooks/feed/list/postUserData";
-import Like from "../../hooks/feed/actions/like";
-import Save from "../../hooks/feed/actions/save";
-import Comments from "./Comments";
+import PostUserDataHook from "../../../hooks/feed/list/postUserData";
+import Like from "../../../hooks/feed/actions/like";
+import { ShowComments } from "../../../hooks/feed/actions/comment";
+import Save from "../../../hooks/feed/actions/save";
+import Comments from "../Comments";
 
 export default function PostElement(props) {
   const { post, uid } = props;
@@ -23,13 +24,9 @@ export default function PostElement(props) {
     liked,
     likeCount,
     handleClick: likeClick,
-  } = Like({
-    postUid: uid,
-    Curtidas: post?.Curtidas,
-  });
+  } = Like({ postUid: uid, Curtidas: post?.Curtidas });
+  const { showComments, handleClick: commentClick } = ShowComments();
   const { saved, handleClick: saveClick } = Save({ postUid: uid });
-
-  const [showComments, setShowComments] = useState(false);
 
   return (
     <div>
@@ -48,7 +45,7 @@ export default function PostElement(props) {
               <BiLike />
               <LikeCount>{likeCount}</LikeCount>
             </LikeButton>
-            <button onClick={() => setShowComments(state => !state)}>
+            <button onClick={commentClick}>
               <BiCommentDetail />
             </button>
             <button onClick={saveClick}>
@@ -58,7 +55,7 @@ export default function PostElement(props) {
         </div>
       </PostContent>
 
-      {showComments && <Comments />}
+      {showComments && <Comments postUid={uid} />}
     </div>
   );
 }

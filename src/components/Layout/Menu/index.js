@@ -11,7 +11,7 @@ import { HiOutlineMail, HiOutlineMenu } from "react-icons/hi";
 import { BiTrendingUp } from "react-icons/bi";
 import { BsThreeDots } from "react-icons/bs";
 import { GoSearch } from "react-icons/go";
-import ScrollLock, { TouchScrollable } from "react-scrolllock";
+import ScrollLock from "react-scrolllock";
 
 import { Filled } from "../..";
 import { logout } from "../../../services/user/authentication";

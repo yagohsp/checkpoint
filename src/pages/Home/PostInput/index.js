@@ -52,7 +52,6 @@ export default function PostInput(props) {
           <InputDiv>
             <Input 
               placeholder="Como estão seus jogos ultimamente?"
-              error={errors.description?.message}
               {...register("description")}
             />
             <PostFormError>

@@ -1,7 +1,11 @@
 import firebase from "firebase/app";
 import { db } from "../../firebase";
 import { fileToBase64 } from "../../util/files";
-import { arrayRemove } from "../../util/array";
+
+const getPost = async (uid) => {
+  const data = await db.collection("posts").doc(uid).get();
+  return data?.data();
+};
 
 const getPosts = async () => {
   const data = await db.collection("posts").orderBy("Data", "desc").get();
@@ -32,26 +36,4 @@ const createPost = async (data) => {
   });
 };
 
-const currentLiked = async (postUid) => {
-  const data = await db.collection("posts").doc(postUid).get();
-  return data.data();
-};
-
-const like = async (postUid, userUid) => {
-  var updated_liked_pool = await currentLiked(postUid);
-  updated_liked_pool = updated_liked_pool?.Curtidas;
-  updated_liked_pool?.push(userUid);
-
-  await db.collection("posts").doc(postUid).update({"Curtidas": updated_liked_pool});
-  return updated_liked_pool;
-};
-
-const deslike = async (postUid, userUid) => {
-  var updated_liked_pool = await currentLiked(postUid);
-  updated_liked_pool = arrayRemove(updated_liked_pool?.Curtidas, userUid);
-
-  await db.collection("posts").doc(postUid).update({"Curtidas": updated_liked_pool});
-  return updated_liked_pool;
-};
-
-export { getPosts, createPost, like, deslike };
+export { getPost, getPosts, createPost };

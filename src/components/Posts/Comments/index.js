@@ -1,8 +1,11 @@
-import React, { useEffect, useState } from "react";
+import React from "react";
 import { IoSend } from "react-icons/io5";
+import { yupResolver } from "@hookform/resolvers/yup";
+import { useForm } from "react-hook-form";
 
-import { ProfilePhoto } from "../../../components";
-
+import commentValidation from "./commentValidation";
+import Loading from "../../Loading/ThreeDots";
+import CommentsHook from "../../../hooks/feed/actions/comment";
 import {
   Animation,
   Comment,
@@ -10,50 +13,64 @@ import {
   CommentsWrapper,
   InputWrapper,
   PostCommentButton,
+  UserPhoto,
+  LoadingWrapper,
+  CommentForm
 } from "./styles";
   
-export default function Comments() {
-  const [commentsLength, setCommentsLength] = useState(0);
+export default function Comments(props) {
+  const {
+    register,
+    handleSubmit,
+    reset
+  } = useForm({
+    resolver: yupResolver(commentValidation),
+  });
 
-  useEffect(() => {
-    setCommentsLength(3);
-  }, []);
+  const {
+    data,
+    loading,
+    onSubmit
+  } = CommentsHook({
+    reset,
+    ...props
+  });
 
   return (
-    <Animation commentsLength={commentsLength}>
-      <CommentsWrapper>
-        <Comment>
-          <ProfilePhoto />
-          <p>
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus
-            interdum gravida felis, vel pretium augue vulputate at. Pellentesque
-            vulputate lacus sem, sit amet faucibus metus hendrerit a. Nullam
-            varius luctus velit, in dignissim est molestie ut. Phasellus at nisi
-            velit. Cras dui tortor, hendrerit ac vulputate ut, mollis eget mi.
-            Quisque vel commodo dui, et volutpat purus. Maecenas malesuada sem
-            ut erat consequat luctus.
-          </p>
-        </Comment>
-        <Comment>
-          <ProfilePhoto />
-          <p>
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus
-            interdum gravida felis, vel pretium augue vulputate at. Pellentesque
-            vulputate lacus sem, sit amet faucibus metus hendrerit a. Nullam
-            varius luctus velit, in dignissim est molestie ut. Phasellus at nisi
-            velit. Cras dui tortor, hendrerit ac vulputate ut, mollis eget mi.
-            Quisque vel commodo dui, et volutpat purus. Maecenas malesuada sem
-            ut erat consequat luctus.
-          </p>
-        </Comment>
-
-        <InputWrapper>
-          <CommentInput placeholder="O que você achou dessa publicação?" />
-          <PostCommentButton type="submit">
-            <IoSend />
-          </PostCommentButton>
-        </InputWrapper>
-      </CommentsWrapper>
+    <Animation commentsLength={data.length === 0 ? 3 : data.length}>
+      <CommentForm onSubmit={handleSubmit(onSubmit)} autoComplete="off">
+        <CommentsWrapper>
+          {
+            loading ?
+              <LoadingWrapper>
+                <Loading />
+              </LoadingWrapper>
+            :
+              <>
+                {
+                  data.map((comment, index) => 
+                    <Comment key={index}>
+                      <UserPhoto src={comment?.Usuario?.Foto} />
+                      <div>
+                        <h5>{comment?.Usuario?.Nome}</h5>
+                        <p>{comment?.Comentario}</p>
+                      </div>
+                    </Comment>
+                  )
+                }
+                <InputWrapper>
+                  <CommentInput 
+                    placeholder="O que você achou dessa publicação?"
+                    {...register("comment")}
+                  />
+                  <PostCommentButton type="submit">
+                    <IoSend />
+                  </PostCommentButton>
+                </InputWrapper>
+              </>
+          }
+        </CommentsWrapper>
+      </CommentForm>
     </Animation>
   );
 }

@@ -1,5 +1,5 @@
 import TextareaAutosize from "react-textarea-autosize";
-import styled, { keyframes } from "styled-components";
+import styled from "styled-components";
 import { css } from "styled-components";
 import { Filled } from "../../Filled";
 
@@ -64,12 +64,28 @@ export const PostCommentButton = styled.button`
 export const Comment = styled.div`
   display: flex;
   padding: 2rem;
-  p {
-    font-size: 1.5rem;
+  div {
     margin-left: 1rem;
+  }
+  p {
+    margin-top: 0.3rem;
+    font-size: 1.5rem;
   }
   img {
     width: 3.5rem;
     height: 3.5rem;
   }
 `;
+
+export const UserPhoto = styled.img`
+  width: 4rem;
+  height: 4rem;
+  margin-right: 1rem;
+`;
+
+export const LoadingWrapper = styled.div`
+  display: flex;
+  place-content: center;
+`;
+
+export const CommentForm = styled.form``;

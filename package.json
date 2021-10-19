@@ -3,6 +3,7 @@
   "version": "0.1.1",
   "private": true,
   "dependencies": {
+    "@agney/react-loading": "^0.1.2",
     "@hookform/resolvers": "^2.8.0",
     "@testing-library/jest-dom": "^5.11.4",
     "@testing-library/react": "^11.1.0",
@@ -20,6 +21,7 @@
     "react-global-configuration": "^1.4.1",
     "react-hook-form": "^7.12.2",
     "react-icons": "^4.2.0",
+    "react-loader-spinner": "^4.0.0",
     "react-router-dom": "^5.2.0",
     "react-scripts": "4.0.3",
     "react-scrolllock": "^5.0.1",

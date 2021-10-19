@@ -1,7 +1,7 @@
 import { useState, useEffect, useCallback, useContext } from "react";
 
 import { AuthContext } from "../../../providers/Auth";
-import { like as likePost, deslike as deslikePost } from "../../../services/feed/posts";
+import { like as likePost, deslike as deslikePost } from "../../../services/feed/like";
 
 export default function Like(props) {
     const {currentUser} = useContext(AuthContext);

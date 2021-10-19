@@ -1,15 +1,19 @@
-import React, { useState } from 'react'
+import React from 'react'
+
+import { ChatProvider } from "../../../providers/Chat";
 import Chat from './Chat'
 import FriendsList from './FriendsList'
 import { Wrapper } from './styles'
 
 export default function Friends() {
-  const [selectedFriend, setSelectedFriend] = useState(null)
+  //const [selectedFriend, setSelectedFriend] = useState(null)
 
   return (
     <Wrapper>
-      <Chat />
-      <FriendsList />
+      <ChatProvider>
+        <Chat />
+        <FriendsList />
+      </ChatProvider>
     </Wrapper>
   )
 }
