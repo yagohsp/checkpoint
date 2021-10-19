@@ -1,4 +1,4 @@
-import React, { useState, useContext } from "react";
+import React, { useContext, useState } from "react";
 import {
   IoSearch,
   IoHome,
@@ -6,11 +6,15 @@ import {
   IoCloudy,
   IoPerson,
 } from "react-icons/io5";
-import { IoMdClose, IoMdMenu } from "react-icons/io";
+import { IoMdClose, IoMdExit } from "react-icons/io";
+import { HiOutlineMail, HiOutlineMenu } from "react-icons/hi";
 import { BiTrendingUp } from "react-icons/bi";
 import { BsThreeDots } from "react-icons/bs";
+import { GoSearch } from "react-icons/go";
+import ScrollLock, { TouchScrollable } from "react-scrolllock";
 
-import { Filled, ProfilePhoto } from "../..";
+import { Filled } from "../..";
+import { logout } from "../../../services/user/authentication";
 import {
   MenuWrapper,
   SearchBar,
@@ -21,16 +25,22 @@ import {
   MoreButton,
   Profile,
   CloseMenu,
-  MobileHeader
+  MobileHeader,
+  MobileFooter,
+  LogoutButton,
+  MoreOptions,
 } from "./styles";
 import { AuthContext } from "../../../providers/Auth";
+import ProfilePhoto from "../../ProfilePhoto";
 
 export default function Menu() {
-  const {currentUserData} = useContext(AuthContext);
+  const { currentUserData } = useContext(AuthContext);
+
   const [showMenu, setShowMenu] = useState(false);
 
   return (
     <>
+      <ScrollLock isActive={showMenu} />
       <MenuWrapper showMenu={showMenu}>
         <SearchBar>
           <Filled removeSide="right">
@@ -45,43 +55,75 @@ export default function Menu() {
           <li>
             <Link to="/" exact={true}>
               Página Inicial
+              <LinkIcon>
+                <IoHome />
+              </LinkIcon>
             </Link>
-            <LinkIcon>
-              <IoHome />
-            </LinkIcon>
           </li>
           <li>
-            <Link to="/notificacoes">Notificações</Link>
-            <LinkIcon>
-              <IoNotifications />
-            </LinkIcon>
+            <Link to="/notificacoes">
+              Notificações
+              <LinkIcon>
+                <IoNotifications />
+              </LinkIcon>
+            </Link>
           </li>
           <li>
-            <Link to="/salvos">Salvos</Link>
-            <LinkIcon>
-              <IoCloudy />
-            </LinkIcon>
+            <Link to="/perfil">
+              Perfil
+              <LinkIcon>
+                <IoPerson />
+              </LinkIcon>
+            </Link>
           </li>
           <li>
-            <Link to="/destaques">Destaques</Link>
-            <LinkIcon>
-              <BiTrendingUp />
-            </LinkIcon>
+            <Link to="/salvos">
+              Salvos
+              <LinkIcon>
+                <IoCloudy />
+              </LinkIcon>
+            </Link>
           </li>
           <li>
-            <Link to="/perfil">Perfil</Link>
-            <LinkIcon>
-              <IoPerson />
-            </LinkIcon>
+            <Link to="/destaques">
+              Destaques
+              <LinkIcon>
+                <BiTrendingUp />
+              </LinkIcon>
+            </Link>
+          </li>
+          <li>
+            <Link to="/pesquisar">
+              Pesquisar
+              <LinkIcon>
+                <GoSearch />
+              </LinkIcon>
+            </Link>
+          </li>
+          <li>
+            <LogoutButton>
+              Sair
+              <LinkIcon>
+                <IoMdExit />
+              </LinkIcon>
+            </LogoutButton>
           </li>
         </MenuList>
 
         <Profile>
           <ProfilePhoto />
           <span>{currentUserData?.Nome}</span>
-          <MoreButton>
+          <MoreButton onClick={() => setShowMenu((state) => !state)}>
             <BsThreeDots />
           </MoreButton>
+          {showMenu && (
+            <>
+              <MoreOptions>
+                <button onClick={logout}>Sair</button>
+                <span onClick={() => setShowMenu(false)} />
+              </MoreOptions>
+            </>
+          )}
         </Profile>
 
         <CloseMenu onClick={() => setShowMenu(false)}>
@@ -91,9 +133,24 @@ export default function Menu() {
 
       <MobileHeader>
         <button onClick={() => setShowMenu(true)}>
-          <IoMdMenu />
+          <HiOutlineMenu color="#fff" />
         </button>
       </MobileHeader>
+
+      <MobileFooter>
+        <Link to="/" exact>
+          <IoHome />
+        </Link>
+        <Link to="/notificacoes">
+          <IoNotifications />
+        </Link>
+        <Link to="/pesquisar">
+          <GoSearch />
+        </Link>
+        <Link to="/mensagens">
+          <HiOutlineMail />
+        </Link>
+      </MobileFooter>
     </>
   );
 }

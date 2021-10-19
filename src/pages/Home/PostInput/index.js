@@ -1,7 +1,6 @@
 import React from "react";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { useForm } from "react-hook-form";
-
 import { IoSend } from "react-icons/io5";
 
 import postValidation from "./postValidation";
@@ -16,11 +15,11 @@ import {
   InputDiv,
   PostFormError,
   PostButton,
-  PostInput,
+  Input,
   DownsideDiv,
 } from "./styles";
 
-export default function CreatePostBar(props) {
+export default function PostInput(props) {
   const {
     file,
     cleanFile,
@@ -47,11 +46,11 @@ export default function CreatePostBar(props) {
 
   return (
     <BarWrapper>
+      <ProfilePhoto />
       <PostForm onSubmit={handleSubmit(onSubmit)} autoComplete="off">
         <InputWrapper>
-          <ProfilePhoto />
           <InputDiv>
-            <PostInput 
+            <Input 
               placeholder="Como estão seus jogos ultimamente?"
               error={errors.description?.message}
               {...register("description")}

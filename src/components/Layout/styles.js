@@ -1,11 +1,13 @@
 import styled from "styled-components";
 
 export const Background = styled.div`
-  background: #321342;
   @media screen and (min-width: 998px) {
     min-height: 100vh;
     width: 100%;
-    /* background: linear-gradient(90deg, rgba(12,11,12,1) 0%, rgba(13,4,17,1) 15%, rgba(80,37,96,1) 50%, rgba(13,4,17,1) 85%, rgba(12,11,12,1) 100%); */
+    background: linear-gradient(90deg, rgba(12,11,12,1) 0%, #1d0829 15%, #321342 50%, #1d0829 85%, rgba(12,11,12,1) 100%);
+  }
+  @media screen and (max-width: 997px) {
+    background: #321342;
   }
 `
 

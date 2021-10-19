@@ -1,9 +1,9 @@
 import React from "react";
 import { IoIosArrowUp, IoIosArrowDown } from "react-icons/io";
 
-import { Friends, Dropdown, ScrollList, Friend } from "./styles";
 import FriendsHook from "../../../../hooks/user/friends";
 import { HideByHeight } from "../../../../animations/div";
+import { Friends, Dropdown, ScrollList, Friend } from "./styles";
 
 export default function FriendsList() {
   const { data, hide, changeDisplay } = FriendsHook();

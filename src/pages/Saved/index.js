@@ -5,7 +5,7 @@ import { Feed } from './styles';
 import Posts from '../../components/Posts';
 import SavedPostsHook from "../../hooks/user/savedPosts";
 
-export default function Salvos() {
+export default function Saved() {
     const props = SavedPostsHook();
 
     return (

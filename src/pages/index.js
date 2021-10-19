@@ -1,7 +1,7 @@
 import Home from './Home';
-import Salvos from './Salvos';
+import Saved from './Saved';
 import Login from './Login';
 import Signup from './Signup';
 import SetupProfile from './SetupProfile';
 
-export { Home, Salvos, Login, Signup, SetupProfile }
+export { Home, Saved, Login, Signup, SetupProfile }

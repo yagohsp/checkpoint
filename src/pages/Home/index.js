@@ -2,16 +2,16 @@ import React from 'react';
 
 import { Feed } from './styles';
 
-import CreatePostBar from './CreatePostBar';
-import Posts from '../../components/Posts';
 import PostsHook from "../../hooks/feed/list/posts";
+import PostInput from './PostInput';
+import Posts from '../../components/Posts';
 
 export default function Home() {
     const props = PostsHook();
 
     return (
         <Feed>
-            <CreatePostBar refresh={props.refresh} />
+            <PostInput refresh={props.refresh} />
             <Posts {...props} />
         </Feed>
     )

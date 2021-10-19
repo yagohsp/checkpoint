@@ -1,27 +1,18 @@
 import React from "react";
 
-import {
-  Post,
-  PostsWrapper,
-} from "./styles";
-import PostElement from "./Post";
+import Post from "./Post";
+import { PostsWrapper } from "./styles";
 
 export default function Posts(props) {
-  const {data: posts} = props;
+  const { data: posts } = props;
 
   return (
     <PostsWrapper>
-      {posts.map(
-        (props, key) => {
-          const post = props.data();
+      {posts.map((props, key) => {
+        const post = props.data();
 
-          return (
-            <Post key={key}>
-              <PostElement post={post} uid={props.id} />
-            </Post>
-          );
-        }
-      )}
+        return <Post key={key} post={post} uid={props.id} />;
+      })}
     </PostsWrapper>
   );
 }
