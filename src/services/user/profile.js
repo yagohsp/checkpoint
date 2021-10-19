@@ -6,7 +6,8 @@ const createProfile = async (name, photo) => {
       "Amigos": [],
       "Jogos": [],
       "Nome": name,
-      "Poster": null
+      "Poster": null,
+      "Salvos": []
     })
     .catch((error) => {
       switch (error.code) {
