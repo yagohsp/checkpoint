@@ -1,8 +1,10 @@
+import firebase from "firebase/app";
 import { db } from "../../firebase";
+import { ordenateArray } from "../../util/array";
 
 const createChat = async (uids) => {
     return await db.collection("chats").doc().set({
-        "users": uids,
+        "users": ordenateArray(uids),
         "messages": []
     });
 };
@@ -12,27 +14,27 @@ const getChat = async (uid) => {
     return data?.data();
 };
 
-const findChat = async (uids) => {
-    var docUid = null;
+const findChatUid = async (uids) => {
+    const data = await db.collection("chats").where("users", "==", ordenateArray(uids)).get();
 
-    const data = await db.collection("chats").where("users", "array-contains", uids[0]).get();
-    const promises = data.docs.map(async (chat) => {
-        const docData = await getChat(chat.id);
-        if(docData?.users?.includes(uids[1])) docUid = chat.id;
-    });
-    await Promise.all(promises);
-
-    if(!docUid) {
+    if(data.docs.length === 0) {
         await createChat(uids);
-        return await findChat(uids);
+        return await findChatUid(uids);
     }
-    return docUid;
+    return data.docs[0]?.id;
 };
 
-const createTrigger = async (uids) => {
-    const uid = await findChat(uids);
-    const trigger = db.doc(`chats/${uid}`);
-    return trigger;
+const sendMessage = async (data) => {
+    var currentMessages = await getChat(data?.uid);
+    currentMessages = currentMessages?.messages;
+    currentMessages?.push({
+        date: firebase.firestore.Timestamp.fromDate(new Date()),
+        message: data?.message,
+        userid: data?.useruid
+    });
+    return await db.collection("chats").doc(data?.uid).update({
+        "messages": currentMessages
+    });
 };
 
-export { createTrigger };
+export { findChatUid, getChat, sendMessage };

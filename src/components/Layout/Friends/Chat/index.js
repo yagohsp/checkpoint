@@ -1,19 +1,33 @@
 import React from "react";
 import { IoMdSend } from "react-icons/io";
+import { yupResolver } from "@hookform/resolvers/yup";
+import { useForm } from "react-hook-form";
 
+import messageValidation from "./messageValidation";
 import ChatHook from "../../../../hooks/user/chat/chat";
 import Friends from "./Friends";
 import Messages from "./Messages";
 import {
   ChatWrapper,
   FriendsScroll,
-  InputMessageWrapper,
+  InputMessageForm,
   InputMessage,
   SendMessageButton,
 } from "./styles";
 
 export default function Chat() {
-  const {currentChatting} = ChatHook();
+  const {
+    register,
+    handleSubmit,
+    reset
+  } = useForm({
+    resolver: yupResolver(messageValidation),
+  });
+
+  const {
+    currentChatting, 
+    onSubmit
+  } = ChatHook({reset});
 
   return (
     <ChatWrapper>
@@ -21,12 +35,15 @@ export default function Chat() {
         {currentChatting.map((frienduid, index) => <Friends key={index} uid={frienduid} />)}
       </FriendsScroll>
       <Messages />
-      <InputMessageWrapper>
-        <InputMessage placeholder="Envie uma mensagem..." />
-        <SendMessageButton>
+      <InputMessageForm onSubmit={handleSubmit(onSubmit)} autoComplete="off">
+        <InputMessage 
+          placeholder="Envie uma mensagem..." 
+          {...register("message")}
+        />
+        <SendMessageButton type="submit">
           <IoMdSend />
         </SendMessageButton>
-      </InputMessageWrapper>
+      </InputMessageForm>
     </ChatWrapper>
   );
 }

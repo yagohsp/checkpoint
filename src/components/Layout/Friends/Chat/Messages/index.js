@@ -1,16 +1,34 @@
 import React from "react";
 
-import { Messages as MessagesHook } from "../../../../../hooks/user/chat/chat";
+import MessagesHook from "../../../../../hooks/user/chat/messages";
+import Loading from "../../../../Loading/Oval";
 import {
-  Messages
+  MessagesWrapper,
+  MessageList,
+  Message
 } from "./styles";
 
 export default function Chat() {
-  const {data} = MessagesHook();
+  const {data, loading, uid} = MessagesHook();
 
   return (
-    <Messages>
-
-    </Messages>
+    <MessagesWrapper>
+      {
+        loading ?
+          <Loading />
+        :
+          <MessageList>
+            {
+              data.map((message, index) => 
+                <Message key={index} user={message?.userid === uid}>
+                  <div>
+                    {message?.message}
+                  </div>
+                </Message>
+              )
+            }
+          </MessageList>
+      }
+    </MessagesWrapper>
   );
 }

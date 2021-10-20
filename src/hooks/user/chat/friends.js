@@ -4,7 +4,7 @@ import { ChatContext } from "../../../providers/Chat";
 import { getFriend } from "../../../services/user/friends";
 
 export default function Friends(props) {
-    const {focus, requestFocus} = useContext(ChatContext);
+    const {focus, requestFocus, removeFromChat} = useContext(ChatContext);
     const [data, setData] = useState({});
     const [loading, setLoading] = useState(false);
 
@@ -13,6 +13,8 @@ export default function Friends(props) {
         setData(await getFriend(props?.uid));
         setLoading(false);
     }, [props]);
+
+    const handleCloseClick = useCallback(() => removeFromChat(props?.uid), [props, removeFromChat]);
     
     const handleClick = useCallback(() => requestFocus(props?.uid), [props, requestFocus]);
 
@@ -20,5 +22,5 @@ export default function Friends(props) {
         load();
     }, [load])
 
-    return {data, loading, focused: focus === props?.uid, handleClick};
+    return {data, loading, focused: focus === props?.uid, handleClick, handleCloseClick};
 };

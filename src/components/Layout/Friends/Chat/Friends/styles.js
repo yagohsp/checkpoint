@@ -1,9 +1,8 @@
 import styled from "styled-components";
 
-export const FriendButton = styled.button`
-  height: 100%;
+export const FriendButton = styled.div`
+  cursor: pointer;
   display: flex;
-  align-items: center;
   padding: 1rem;
   border-right: 1px solid #834f95;
   border-left: 1px solid #834f95;
@@ -19,10 +18,17 @@ export const FriendButton = styled.button`
   &:first-of-type {
     border-left: 0;
   }
+  div {
+    height: 100%;
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+  }
   img {
     height: 100%;
   }
   span {
+    white-space: nowrap;
     display: block;
     color: #fff;
     transition: color 0.15s ease;

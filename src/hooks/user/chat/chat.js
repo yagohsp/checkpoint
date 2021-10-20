@@ -1,34 +1,28 @@
-import { useContext, useState, useEffect, useCallback } from "react";
+import { useContext, useCallback, useState } from "react";
 
 import { AuthContext } from "../../../providers/Auth";
 import { ChatContext } from "../../../providers/Chat";
-import { createTrigger as createTriggerChat } from "../../../services/user/chat";
+import { sendMessage } from "../../../services/user/chat";
 
-export default function Chat() {
-    const {currentChatting} = useContext(ChatContext);
-
-    return {currentChatting};
-};
-
-export function Messages() {
+export default function Chat(props) {
     const {currentUser} = useContext(AuthContext);
-    const {focus} = useContext(ChatContext);
-    const [data, setData] = useState([]);
+    const {currentChatting, chatuid} = useContext(ChatContext);
     const [loading, setLoading] = useState(false);
+    const {reset} = props;
 
-    const createTrigger = useCallback(async () => {
-        if(!focus) {
-            setData([]);
-            return ;
-        }
+    const cleanForm = useCallback(() => reset(), [reset]);
 
+    const onSubmit = useCallback(async (data) => {
+        if(!chatuid) return ;
         setLoading(true);
-        const trigger = await createTriggerChat([currentUser.uid, focus]);
-        const unsubscribe = trigger.onSnapshot((snapshot) => console.warn(snapshot));
+        await sendMessage({
+            uid: chatuid,
+            useruid: currentUser?.uid,
+            ...data
+        });
+        cleanForm();
         setLoading(false);
-    }, [currentUser, focus]);
+    }, [chatuid, currentUser, cleanForm]);
 
-    useEffect(() => createTrigger(), [createTrigger, focus])
-
-    return {data, loading};
+    return {currentChatting, onSubmit, loading};
 };

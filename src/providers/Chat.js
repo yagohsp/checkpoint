@@ -7,6 +7,7 @@ export const ChatContext = React.createContext();
 export const ChatProvider = ({ children }) => {
   const [currentChatting, setCurrentChatting] = useState([]);
   const [focus, setFocus] = useState(null);
+  const [chatuid, setChatuid] = useState(null);
 
   const addToChat = useCallback((useruid) => {
     if(!currentChatting.includes(useruid)){
@@ -21,9 +22,12 @@ export const ChatProvider = ({ children }) => {
     var current = arrayRemove(currentChatting, useruid);
     setCurrentChatting(current);
     setFocus(null);
+    setChatuid(null);
   }, [currentChatting]);
 
   const requestFocus = useCallback((useruid) => setFocus(useruid), []);
+
+  const changeChatUid = useCallback((chatuid) => setChatuid(chatuid), []);
 
   return (
     <ChatContext.Provider
@@ -32,7 +36,9 @@ export const ChatProvider = ({ children }) => {
         addToChat,
         removeFromChat,
         focus,
-        requestFocus
+        requestFocus,
+        chatuid,
+        changeChatUid
       }}
     >
       {children}

@@ -21,7 +21,7 @@ export const FriendsScroll = styled.div`
   }
 `;
 
-export const InputMessageWrapper = styled.div`
+export const InputMessageForm = styled.form`
   position: relative;
 `;
 
@@ -55,8 +55,6 @@ export const SendMessageButton = styled.button`
   color: #fff;
   border-radius: 50%;
   transition: background-color 0.15s ease;
-  pointer-events: none;
-  cursor: default;
   color: #acacac;
   svg {
     height: 1.9rem;
