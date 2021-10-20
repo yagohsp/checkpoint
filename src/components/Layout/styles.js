@@ -21,3 +21,15 @@ export const Grid = styled.div`
     margin: 0 auto;
   }
 `;
+
+export const Content = styled.div`
+  width: 100%;
+  min-height: 100vh;
+  @media screen and (min-width: 998px) {
+    border: 2px solid #834F95;
+    margin-top: 3rem;
+  }
+  @media screen and (max-width: 997px) {
+    padding-bottom: 50px;
+  }
+`;
