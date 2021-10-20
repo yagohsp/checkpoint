@@ -5,7 +5,7 @@ import { IoSend } from "react-icons/io5";
 
 import postValidation from "./postValidation";
 import { ProfilePhoto } from "../../../components";
-import File from "../../../hooks/feed/create/file";
+import File from "../../../hooks/file";
 import CreatePost from "../../../hooks/feed/create/post";
 import Attachment from "./attachment";
 import {
@@ -24,7 +24,7 @@ export default function PostInput(props) {
     file,
     cleanFile,
     ...rest
-  } = File();
+  } = File({});
 
   const {
     register,

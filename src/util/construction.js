@@ -1,5 +1,5 @@
 
-import { db } from "../firebase";
+import fs, { db } from "../firebase";
 import firebase from "firebase/app";
 
 const createStaticPost = async () => {
@@ -38,4 +38,16 @@ const createStaticPost = async () => {
     });
 };
 
-export { createStaticPost };
+const showLinkImage = async () => {
+  return await fs.storage("gs://checkpoint-socialnetwork.appspot.com").ref("Dota-2.jpg").getDownloadURL()
+};
+
+const uploadImage = async (file) => {
+  const storageRef = fs.storage("gs://checkpoint-socialnetwork.appspot.com").ref();
+  const metadata = {contentType: "image/jpeg"};
+  const fileRef = storageRef.child("test.jpg");
+  const uploadTaskSnapshot = await fileRef.put(file, metadata);
+  return await uploadTaskSnapshot.ref.getDownloadURL();
+};
+
+export { createStaticPost, showLinkImage, uploadImage };

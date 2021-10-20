@@ -4,6 +4,10 @@ function arrayRemove(arr, value) {
     });
 };
 
+function removeFromArrayByIndex(arr, index) {
+    return arr.splice(index, 1);
+};
+
 function ordenateArray(arr) {
     return arr.sort(function(a, b){
         if(a < b) { return -1; }
@@ -12,4 +16,4 @@ function ordenateArray(arr) {
     })
 };
 
-export { arrayRemove, ordenateArray };
+export { arrayRemove, ordenateArray, removeFromArrayByIndex };
