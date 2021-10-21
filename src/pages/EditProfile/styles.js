@@ -1,4 +1,5 @@
 import styled from "styled-components";
+import { Button } from "../../components";
 
 export const Container = styled.div`
   height: 100%;
@@ -130,7 +131,6 @@ export const GameStats = styled.div`
   }
   @media screen and (max-width: 997px) {
     flex-wrap: wrap;
-
   }
 `;
 
@@ -157,5 +157,13 @@ export const Screenshots = styled.div`
     &:nth-of-type(2n - 1) {
       margin-right: 4%;
     }
+  }
+`;
+
+export const SaveButton = styled(Button)`
+  background-color: #7c1499;
+  margin-top: 3rem;
+  &:hover{
+    background-color: #590d6e;
   }
 `;

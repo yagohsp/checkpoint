@@ -69,7 +69,7 @@ export default function Menu() {
             </Link>
           </li>
           <li>
-            <Link to="/meu-perfil">
+            <Link to="/perfil">
               Perfil
               <LinkIcon>
                 <IoPerson />

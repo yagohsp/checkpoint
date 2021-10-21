@@ -15,6 +15,7 @@ import {
   GameContent,
   GameStats,
   Screenshots,
+  SaveButton,
 } from "./styles";
 
 export default function EditProfile() {
@@ -87,10 +88,18 @@ export default function EditProfile() {
           <img src="https://www.gamingcfg.com/img/9706/Dota-2.jpg" alt="1" />
           <img src="https://www.gamingcfg.com/img/9708/Bot-lane.jpg" alt="2" />
           <img src="https://i.imgur.com/WP32vA5.jpg" alt="3" />
-          <img src="https://media.rawg.io/media/screenshots/55e/55e2c2ff16229eef87cfd8728ca537ac.jpg" alt="4" />
-          <img src="https://www.mobygames.com/images/promo/original/1471162549-3475988976.jpg" alt="5" />
+          <img
+            src="https://media.rawg.io/media/screenshots/55e/55e2c2ff16229eef87cfd8728ca537ac.jpg"
+            alt="4"
+          />
+          <img
+            src="https://www.mobygames.com/images/promo/original/1471162549-3475988976.jpg"
+            alt="5"
+          />
         </Screenshots>
       </GameContent>
+
+      <SaveButton>Salvar</SaveButton>
     </Container>
   );
 }
