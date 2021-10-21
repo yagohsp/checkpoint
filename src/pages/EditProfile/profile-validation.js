@@ -1,11 +1,11 @@
 import * as yup from "yup";
 
 const profileValidation = yup.object({
-  username: yup.string().required("Campo necessário"),
-  email: yup.string().required("Campo necessário"),
-  password: yup.string(),
-  repeatPassword: yup.string().oneOf([yup.ref('password'), null], 'As senhas devem coincidir'),
-  description: yup.string()
+  Nome: yup.string(),
+  Email: yup.string(),
+  Password: yup.string().test('len', 'Deve ter ao menos 6 carácteres', val => val.length >= 6 || val.length === 0),
+  RepeatPassword: yup.string().oneOf([yup.ref('Password'), null], 'As senhas devem coincidir'),
+  Descricao: yup.string()
 });
 
 

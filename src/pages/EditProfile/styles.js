@@ -133,6 +133,10 @@ export const GameStats = styled.div`
       color: #fff;
       font-size: 1.4rem;
     }
+    input::-webkit-inner-spin-button {
+      -webkit-appearance: none;
+      margin: 0;
+    }
   }
   @media screen and (max-width: 997px) {
     flex-wrap: wrap;
@@ -201,15 +205,16 @@ export const AddImage = styled.div`
 export const SpaceBetweenDiv = styled.div`
   display: flex;
   place-content: space-between;
-  place-items: self-start;
+  place-items: center;
   svg {
     fill: #fff;
-    height: 4.5rem;
-    width: 4.5rem;
+    height: 3.5rem;
+    width: 3.5rem;
     transition: color 0.15s ease;
-    &:hover {
-      fill: #7a448c;
-    }
+  }
+  button {
+    width: fit-content;
+    margin-top: 0;
   }
   ${(props) => props?.styles && props?.styles}
 `;
@@ -242,7 +247,7 @@ export const GameTitle = styled.h3`
   }
 `;
 
-export const SaveButton = styled(Button)`
+export const CustomButton = styled(Button)`
   background-color: #7c1499;
   margin-top: 3rem;
   &:hover{

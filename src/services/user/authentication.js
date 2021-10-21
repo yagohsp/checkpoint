@@ -4,9 +4,7 @@ const login = async (email, password) => {
   return firebaseApp
     .auth()
     .signInWithEmailAndPassword(email, password)
-    .then((user) => {
-      console.log(user);
-    })
+    .then()
     .catch((error) => {
       switch (error.code) {
         case "auth/invalid-email":
@@ -32,9 +30,7 @@ const createUser = async (email, password) => {
   return firebaseApp
     .auth()
     .createUserWithEmailAndPassword(email, password)
-    .then((response) => {
-      console.log(response);
-    })
+    .then()
     .catch((error) => {
       switch (error.code) {
         case "auth/email-already-in-use":
@@ -47,8 +43,50 @@ const createUser = async (email, password) => {
     });
 };
 
+const changeEmail = async (email) => {
+  return firebaseApp
+    .auth()
+    .currentUser
+    .updateEmail(email)
+    .then()
+    .catch((error) => {
+      switch (error.code) {
+        case "auth/email-already-in-use":
+        case "auth/invalid-email":
+        case "auth/operation-not-allowed":
+          return "E-mail inválido ou já utilizado";
+        case "auth/requires-recent-login":
+          return "Relogue para alterar seu e-mail";
+        default:
+          return;
+      }
+    });
+};
+
+const changePass = async (pass) => {
+  return firebaseApp
+    .auth()
+    .currentUser
+    .updatePassword(pass)
+    .then()
+    .catch((error) => {
+      switch (error.code) {
+        case "auth/email-already-in-use":
+        case "auth/invalid-email":
+        case "auth/operation-not-allowed":
+          return "E-mail inválido ou já utilizado";
+        case "auth/requires-recent-login":
+          return "Relogue para alterar sua senha";
+        case "auth/weak-password":
+          return "A senha deve ter pelo menos 6 carácteres";
+        default:
+          return;
+      }
+    });
+};
+
 const logout = () => {
   firebaseApp.auth().signOut();
 };
 
-export { login, createUser, logout };
+export { login, createUser, logout, changeEmail, changePass };

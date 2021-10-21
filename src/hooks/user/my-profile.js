@@ -1,6 +1,9 @@
 import { useState, useContext, useEffect, useCallback } from "react";
+import { useHistory } from "react-router-dom";
 
 import { AuthContext } from "../../providers/Auth";
+import { saveProfile } from "../../services/user/profile";
+import { cloneDeep } from "lodash";
 
 export default function MyProfile() {
   const {currentUserData} = useContext(AuthContext);
@@ -59,14 +62,16 @@ export default function MyProfile() {
 };
 
 export function SaveProfile(props) {
+  const {currentUser} = useContext(AuthContext);
   const [loading, setLoading] = useState(false);
+  const history = useHistory();
 
   const onSubmit = useCallback(async (data) => {
       setLoading(true);
-      console.warn({...data, ...props});
-      //await createPost({...data, file, uid: currentUser.uid});
+      const result = await saveProfile(cloneDeep({...data, ...props, uid: currentUser.uid}));
       setLoading(false);
-  }, [props]);
+      if(Object.keys(result).length === 0) history.push("/");
+  }, [props, currentUser, history]);
 
   return {loading, onSubmit};
 };

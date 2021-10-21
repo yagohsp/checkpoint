@@ -1,4 +1,4 @@
-import { db } from "../firebase";
+import firebase, { db } from "../firebase";
 
 const getDocReference = async (reference, object) => {
   const data = await reference.get();
@@ -10,4 +10,12 @@ const createTrigger = async (path) => {
   return trigger;
 };
 
-export { getDocReference, createTrigger };
+const uploadImageToBucket = async (file) => {
+  const storageRef = firebase.storage("gs://checkpoint-socialnetwork.appspot.com").ref();
+  const metadata = {contentType: file.type};
+  const fileRef = storageRef.child(file.name);
+  const uploadTaskSnapshot = await fileRef.put(file, metadata);
+  return await uploadTaskSnapshot.ref.getDownloadURL();
+};
+
+export { getDocReference, createTrigger, uploadImageToBucket };

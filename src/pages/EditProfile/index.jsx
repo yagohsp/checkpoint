@@ -21,7 +21,7 @@ import {
   Input,
   TextArea,
   SubTitle,
-  SaveButton,
+  CustomButton,
 } from "./styles";
 
 export default function EditProfile() {
@@ -48,16 +48,15 @@ export default function EditProfile() {
     defaultFile: data?.Poster
   });
 
-  const {onSubmit} = SaveProfile({
-    profilePhoto,
-    banner,
-    games: data?.Jogos
+  const {loading, onSubmit} = SaveProfile({
+    Foto: profilePhoto,
+    Poster: banner,
+    Jogos: data?.Jogos
   });
 
   const {
     register,
-    handleSubmit,
-    formState: { errors },
+    handleSubmit
   } = useForm({
     resolver: yupResolver(profileValidation),
   });
@@ -66,7 +65,6 @@ export default function EditProfile() {
     <ContainerForm onSubmit={handleSubmit(onSubmit)} autoComplete="off">
       <SpaceBetweenDiv>
         <Title>Editar Perfil</Title>
-        <button type="submit"><AiOutlineSave /></button>
       </SpaceBetweenDiv>
       <BasicStats>
         <FlexColumn>
@@ -74,24 +72,24 @@ export default function EditProfile() {
           <InputWrapper>
             <Label>E-mail</Label>
             <Input 
-              {...register("email")}
-              defaultValue={data?.email} 
+              {...register("Email")}
+              defaultValue={data?.Email} 
             />
           </InputWrapper>
           <InputWrapper>
             <Label>Usuário</Label>
             <Input 
-              {...register("username")}
+              {...register("Nome")}
               defaultValue={data?.Nome} 
             />
           </InputWrapper>
           <InputWrapper>
             <Label>Senha</Label>
-            <Input {...register("password")} type="password" />
+            <Input {...register("Password")} type="password" />
           </InputWrapper>
           <InputWrapper>
             <Label>Confirmar senha</Label>
-            <Input {...register("repeatPassword")} type="password" />
+            <Input {...register("RepeatPassword")} type="password" />
           </InputWrapper>
         </FlexColumn>
         <Banner file={banner} {...bannerRest} />
@@ -100,14 +98,14 @@ export default function EditProfile() {
         <Label>Descrição</Label>
         <TextArea 
           rows={3}
-          {...register("description")}
+          {...register("Descricao")}
           defaultValue={data?.Descricao}
         />
       </InputWrapper>
 
       <SpaceBetweenDiv styles={`{margin-top: 4rem; margin-bottom: 2rem;}`}>
         <SubTitle>Jogos</SubTitle>
-        <button type="button" onClick={addGame}><IoIosAddCircleOutline /></button>
+        <CustomButton type="button" onClick={addGame}><IoIosAddCircleOutline /></CustomButton>
       </SpaceBetweenDiv>
       {
         data?.Jogos?.map((game, index) => 
@@ -121,7 +119,7 @@ export default function EditProfile() {
           />
         )
       }
-      <SaveButton>Salvar</SaveButton>
+      <CustomButton type="submit">Salvar</CustomButton>
     </ContainerForm>
   );
 }

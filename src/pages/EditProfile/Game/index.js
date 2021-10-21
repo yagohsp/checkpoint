@@ -25,20 +25,25 @@ export default function Game(props={}) {
         file,
         hiddenFileInput,
         handleChange,
-        handleClick
+        handleClick,
+        cleanFile
     } = FileHook({
         base64: false,
         defaultFile: data?.Foto
     });
 
     useEffect(() => {
-        if(file) addFile(file);
-    }, [addFile, file]);
+        if(file) {
+            addFile(file)
+            cleanFile();
+        };
+    }, [addFile, file, cleanFile]);
 
     return (
         <GameContent>
             <GameTitle>
                 <input 
+                    placeholder="Nome do jogo..."
                     value={data?.Jogo} 
                     onChange={(event) => changeGameFieldValue({event, field: "Jogo"})} 
                 />
@@ -50,6 +55,7 @@ export default function Game(props={}) {
                 <div>
                     <label>Nível</label>
                     <input 
+                        type="number"
                         value={data?.Nivel} 
                         onChange={(event) => changeGameFieldValue({event, field: "Nivel"})} 
                     />
@@ -57,6 +63,7 @@ export default function Game(props={}) {
                 <div>
                     <label>Rank</label>
                     <input 
+                        type="number"
                         value={data?.Rank} 
                         onChange={(event) => changeGameFieldValue({event, field: "Rank"})} 
                     />
@@ -71,6 +78,7 @@ export default function Game(props={}) {
                 <div>
                     <label>Tempo de jogo</label>
                     <input 
+                        type="number"
                         value={data?.TempoJogo} 
                         onChange={(event) => changeGameFieldValue({event, field: "TempoJogo"})} 
                     />
@@ -78,6 +86,7 @@ export default function Game(props={}) {
                 <div>
                     <label>Joga desde</label>
                     <input 
+                        type="number"
                         value={data?.JogaDesde} 
                         onChange={(event) => changeGameFieldValue({event, field: "JogaDesde"})} 
                     />
@@ -87,14 +96,17 @@ export default function Game(props={}) {
                 <label>Screenshots</label>
                 {
                     data?.Capturas?.map(
-                    (screenshot, index) => (
-                        <Screenshot key={index}>
-                            <img src={screenshot} alt={index} />
-                            <button onClick={() => removeFile(index)}>
-                                <AiFillCloseSquare />
-                            </button>
-                        </Screenshot>
-                    ))
+                    (screenshot, index) => {
+                        const path = typeof(screenshot) === "string" ? screenshot : URL.createObjectURL(screenshot);
+                        return (
+                            <Screenshot key={index}>
+                                <img src={path} alt={index} />
+                                <button onClick={() => removeFile(index)}>
+                                    <AiFillCloseSquare />
+                                </button>
+                            </Screenshot>
+                        );
+                    })
                 }
                 <Screenshot>
                     <AddImage onClick={handleClick}>

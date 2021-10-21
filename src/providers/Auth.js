@@ -11,7 +11,7 @@ export const AuthProvider = ({ children }) => {
   const sync = useCallback(async (user) => {
     if(!user && !currentUser) return;
     const data = await db.collection("usuários").doc(user ? user.uid : currentUser.uid).get();
-    setCurrentUserData({...data.data(), email: user ? user.email : currentUser.email});
+    setCurrentUserData({...data.data(), Email: user ? user.email : currentUser.email});
   }, [currentUser]);
 
   useEffect(() => {
