@@ -6,7 +6,7 @@ import { HideByHeight } from "../../../../animations/div";
 import { Friends, Dropdown, ScrollList, Friend } from "./styles";
 
 export default function FriendsList() {
-  const { data, hide, changeDisplay } = FriendsHook();
+  const { userMessageClick, data, hide, changeDisplay } = FriendsHook();
 
   return (
     <Friends>
@@ -24,7 +24,7 @@ export default function FriendsList() {
           {
             data.map((friend, index) => 
               <li key={index}>
-                <Friend>
+                <Friend onClick={() => userMessageClick(friend.uid)}>
                   <img src={friend.Foto} alt={friend.Nome} />
                   <span>{friend.Nome}</span>
                 </Friend>

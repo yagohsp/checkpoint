@@ -1,7 +1,7 @@
 import styled from "styled-components";
 import { Button } from "../../components";
 
-export const Container = styled.div`
+export const ContainerForm = styled.form`
   height: 100%;
   width: 100%;
   background-color: #23012c;
@@ -22,8 +22,6 @@ export const Title = styled.h1`
 export const SubTitle = styled.h2`
   color: #fff;
   font-size: 2.4rem;
-  margin-top: 4rem;
-  margin-bottom: 2rem;
 `;
 
 export const BasicStats = styled.div`
@@ -59,6 +57,8 @@ export const PictureInput = styled(InputWrapper)`
   }
   img {
     margin: 0 auto 1.5rem;
+    height: 17rem;
+    width: 17rem;
   }
 `;
 
@@ -112,21 +112,26 @@ export const GameContent = styled.div`
 export const GameStats = styled.div`
   width: 100%;
   display: flex;
+  align-content: space-evenly;
   div {
+    text-align: center;
+    margin: auto;
+    margin-top: 1.5rem;
+    max-width: 23%;
     background-color: #3e074d;
     border: 2px solid #834f95;
     padding: 0.2rem 1rem;
-    margin-top: 1.5rem;
-    margin-right: 2rem;
     label {
       color: #fff;
       font-size: 1.2rem;
       font-weight: 500;
     }
-    p {
+    input {
+      text-align: center;
+      max-width: 8rem;
+      outline: 0;
       color: #fff;
       font-size: 1.4rem;
-      padding: 0.2rem 0.5rem 0.5rem;
     }
   }
   @media screen and (max-width: 997px) {
@@ -152,10 +157,87 @@ export const Screenshots = styled.div`
     font-weight: 500;
   }
   img {
-    width: 48%;
+    width: 100%;
     margin-bottom: 1rem;
-    &:nth-of-type(2n - 1) {
-      margin-right: 4%;
+  }
+`;
+
+export const Screenshot = styled.div`
+  width: 48%;
+  display: flex;
+  padding: 0.5rem;
+  button {
+    position: absolute;
+    svg {
+      fill: #fff;
+      &:hover {
+        fill: #909090;
+      }
+    }
+  }
+`;
+
+export const AddImage = styled.div`
+  width: 100%;
+  background-color: #673ab7;
+  display: flex;
+  min-height: 10rem;
+  justify-content: center;
+  align-items: center;
+  svg {
+    width: 4.7rem;
+    height: 4.7rem;
+    fill: #fff;
+  }
+  &:hover {
+    background-color: #745ba0;
+  }
+  margin-bottom: 1rem;
+  &:nth-of-type(2n - 1) {
+    margin-right: 4%;
+  }
+`;
+
+export const SpaceBetweenDiv = styled.div`
+  display: flex;
+  place-content: space-between;
+  place-items: self-start;
+  svg {
+    fill: #fff;
+    height: 4.5rem;
+    width: 4.5rem;
+    transition: color 0.15s ease;
+    &:hover {
+      fill: #7a448c;
+    }
+  }
+  ${(props) => props?.styles && props?.styles}
+`;
+
+export const LittleButton = styled.button`
+  svg {
+    height: 3rem;
+    width: 3rem;
+  }
+`;
+
+export const HiddenInput = styled.input`
+  display: none;
+`;
+
+export const GameTitle = styled.h3`
+  place-content: space-between;
+  display: flex;
+  input {
+    outline: 0;
+    color: #fff;
+  }
+  button {
+    &:hover {
+      background-color: #321342;
+      svg {
+        color: #f44336;
+      }
     }
   }
 `;

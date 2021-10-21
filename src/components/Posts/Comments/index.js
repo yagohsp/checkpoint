@@ -14,7 +14,6 @@ import {
   InputWrapper,
   PostCommentButton,
   UserPhoto,
-  LoadingWrapper,
   CommentForm
 } from "./styles";
   
@@ -42,9 +41,7 @@ export default function Comments(props) {
         <CommentsWrapper>
           {
             loading ?
-              <LoadingWrapper>
-                <Loading />
-              </LoadingWrapper>
+              <Loading />
             :
               <>
                 {

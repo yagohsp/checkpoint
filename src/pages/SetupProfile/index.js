@@ -5,7 +5,7 @@ import { yupResolver } from "@hookform/resolvers/yup";
 
 import { FileDropzone, TextInput, Button } from "../../components";
 import { ProfileForm, ProfileWrapper, Title } from "./styles";
-import profileValidation from "./profileValidation";
+import profileValidation from "./profile-validation";
 import { createProfile } from "../../services/user/profile";
 import { fileToBase64 } from "../../util/files";
 import { AuthContext } from "../../providers/Auth";

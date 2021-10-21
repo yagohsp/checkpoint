@@ -83,9 +83,4 @@ export const UserPhoto = styled.img`
   margin-right: 1rem;
 `;
 
-export const LoadingWrapper = styled.div`
-  display: flex;
-  place-content: center;
-`;
-
 export const CommentForm = styled.form``;

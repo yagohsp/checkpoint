@@ -11,7 +11,7 @@ import {
   Profile,
   PostContent,
 } from "./styles";
-import PostUserDataHook from "../../../hooks/feed/list/postUserData";
+import PostUserDataHook from "../../../hooks/feed/list/post-user-data";
 import Like from "../../../hooks/feed/actions/like";
 import { ShowComments } from "../../../hooks/feed/actions/comment";
 import Save from "../../../hooks/feed/actions/save";

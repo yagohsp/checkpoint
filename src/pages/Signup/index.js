@@ -5,7 +5,7 @@ import { yupResolver } from "@hookform/resolvers/yup";
 
 import { TextInput, Button } from "../../components";
 import { LoginAccount, SignupForm, SignupWrapper, Title } from "./styles";
-import signupValidation from "./signupValidation";
+import signupValidation from "./signup-validation";
 import { createUser } from "../../services/user/authentication";
 import { AuthContext } from "../../providers/Auth";
 
