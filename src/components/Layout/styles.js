@@ -15,7 +15,7 @@ export const Grid = styled.div`
   width: 100%;
   @media screen and (min-width: 998px) {
     position: relative;
-    max-width: 1360px;
+    max-width: 1440px;
     display: flex;
     padding: 0 40px;
     margin: 0 auto;

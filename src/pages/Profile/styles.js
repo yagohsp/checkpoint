@@ -1,5 +1,6 @@
 import { Link } from "react-router-dom";
 import styled from "styled-components";
+import { Button } from "../../components";
 
 export const Container = styled.div`
   width: 100%;
@@ -101,6 +102,7 @@ export const Stats = styled.div`
     }
   }
   @media screen and (min-width: 998px) {
+    align-items: center;
     margin-top: 3rem;
   }
   @media screen and (max-width: 997px) {
@@ -109,5 +111,29 @@ export const Stats = styled.div`
     > div {
       margin-top: 14px;
     }
+  }
+`;
+
+export const AddButton = styled(Button)`
+  width: fit-content;
+  display: flex;
+  align-items: center;
+  background-color: #7c1499;
+  font-weight: 500;
+  padding: 1rem 2rem;
+  &:hover {
+    background-color: #590d6e;
+  }
+  svg {
+    height: 2.2rem;
+    width: 2.2rem;
+    margin-right: 0.7rem;
+  }
+  @media screen and (min-width: 998px) {
+    margin-left: auto;
+    margin-top: 0;
+  }
+  @media screen and (max-width: 997px) {
+    margin-top: 2rem;
   }
 `;

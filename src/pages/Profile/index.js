@@ -1,11 +1,16 @@
 import React, { useRef, useState } from "react";
 import { AiOutlineClockCircle, AiOutlineEye } from "react-icons/ai";
 import { IoGameControllerOutline } from "react-icons/io5";
-import { MdOutlineModeEditOutline, MdPeopleOutline } from "react-icons/md";
+import {
+  MdOutlineGames,
+  MdOutlineModeEditOutline,
+  MdPeopleOutline,
+} from "react-icons/md";
 
 import { ProfilePhoto } from "../../components";
 import Posts from "../../components/Posts";
 import {
+  AddButton,
   BackgroundBanner,
   Container,
   Description,
@@ -52,9 +57,7 @@ export default function Profile() {
           >
             <AiOutlineEye />
           </ShowBackgroundButton>
-          <EditProfileLink
-            to="/editar-perfil"
-          >
+          <EditProfileLink to="/editar-perfil">
             <MdOutlineModeEditOutline />
           </EditProfileLink>
           <div>
@@ -75,6 +78,9 @@ export default function Profile() {
               <strong>183</strong> amigos
             </p>
           </div>
+          <AddButton>
+            <MdOutlineGames /> Adicionar
+          </AddButton>
         </Stats>
       </User>
       {/* <Posts /> */}
