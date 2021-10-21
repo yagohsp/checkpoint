@@ -1,7 +1,7 @@
 import { db } from "../../firebase";
 import { getDocReference } from "../index";
 
-const getFriends = async (referenceList) => {
+const getUsers = async (referenceList) => {
     var friendList = [];
     const promises = referenceList.map(
         async (friend) => friendList.push({
@@ -13,9 +13,9 @@ const getFriends = async (referenceList) => {
     return friendList;
 };
 
-const getFriend = async (uid) => {
+const getUser = async (uid) => {
     const data = await db.collection("usuários").doc(uid).get();
     return data?.data();
 };
 
-export { getFriends, getFriend };
+export { getUsers, getUser };

@@ -1,7 +1,7 @@
 import { useState, useEffect, useCallback, useContext } from "react";
 
 import { ChatContext } from "../../../providers/Chat";
-import { getFriend } from "../../../services/user/friends";
+import { getUser } from "../../../services/user/friends";
 
 export default function Friends(props) {
     const {focus, requestFocus, removeFromChat} = useContext(ChatContext);
@@ -10,7 +10,7 @@ export default function Friends(props) {
 
     const load = useCallback(async () => {
         setLoading(true);
-        setData(await getFriend(props?.uid));
+        setData(await getUser(props?.uid));
         setLoading(false);
     }, [props]);
 

@@ -1,6 +1,6 @@
 import { useState, useEffect, useCallback, useContext } from "react";
 
-import { getFriends } from "../../services/user/friends";
+import { getUsers } from "../../services/user/friends";
 import { AuthContext } from "../../providers/Auth";
 import { ChatContext } from "../../providers/Chat";
 
@@ -17,7 +17,7 @@ export default function Friends() {
 
     const refresh = useCallback(async () => {
         setLoading(true);
-        setData(await getFriends(currentUserData.Amigos));
+        setData(await getUsers(currentUserData.Amigos));
         setLoading(false);
     }, [currentUserData]);
 
