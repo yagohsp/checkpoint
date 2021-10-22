@@ -5,6 +5,10 @@ const getDocReference = async (reference, object) => {
   return object ? data : data?.data();
 };
 
+const generateReference = (collection, doc) => {
+  return db.collection(collection).doc(doc);
+};
+
 const createTrigger = async (path) => {
   const trigger = db.doc(path);
   return trigger;
@@ -18,4 +22,4 @@ const uploadImageToBucket = async (file) => {
   return await uploadTaskSnapshot.ref.getDownloadURL();
 };
 
-export { getDocReference, createTrigger, uploadImageToBucket };
+export { getDocReference, createTrigger, uploadImageToBucket, generateReference };

@@ -6,7 +6,6 @@ export default function index({
   removeSide,
   borderColor,
 }) {
-  console.log(borderColor)
   return (
     <Filled removeSide={removeSide} borderColor={borderColor}>
       {children}

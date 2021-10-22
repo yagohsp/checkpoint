@@ -11,13 +11,22 @@ export const AuthProvider = ({ children }) => {
   const [currentUserData, setCurrentUserData] = useState(null);
   const [loading, setLoading] = useState(true);
   const unsubscribe = useRef(null);
+  const initialized = useRef(false);
 
   const setupUserData = useCallback(async (uid, user) => {
-    const data = await getUser(uid);
-    setCurrentUserData({...data, Email: currentUser?.email ? currentUser.email : user.email});
+    var data = await getUser(uid);
+    data['AmigosUid'] = [];
+    const friendPromises = data?.Amigos.map((friend) => data.AmigosUid.push(friend?.id));
+    await Promise.all(friendPromises);
+    setCurrentUserData({
+      ...data, 
+      Email: currentUser?.email ? currentUser.email : user.email, 
+      uid
+    });
   }, [currentUser]);
 
   const createTrigger = useCallback(async (user) => {
+    if(!await getUser(user.uid)) return ;
     await setupUserData(user.uid, user);
     const trigger = await createTriggerUser(`usuários/${user.uid}`);
     unsubscribe.current = trigger.onSnapshot({
@@ -28,14 +37,21 @@ export const AuthProvider = ({ children }) => {
   }, [setupUserData]);
 
   useEffect(() => {
+    if(initialized.current) return ;
+    initialized.current = true;
     firebase.auth().onAuthStateChanged(async (user) => {
-      if(!user) return ;
+      setLoading(true);
       if(unsubscribe.current) unsubscribe.current();
-      await createTrigger(user);
-      setCurrentUser(user);
+      if(user){
+        await createTrigger(user);
+        setCurrentUser(user);
+      } else {
+        setCurrentUserData(null);
+        setCurrentUser(null);
+      }
       setLoading(false);
     });
-  }, [createTrigger]);
+  }, [createTrigger, loading]);
 
   return (
     <AuthContext.Provider

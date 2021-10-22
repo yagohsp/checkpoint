@@ -6,7 +6,7 @@ import { saveProfile } from "../../services/user/profile";
 import { cloneDeep } from "lodash";
 
 export default function MyProfile() {
-  const {currentUserData} = useContext(AuthContext);
+  const {currentUser, currentUserData} = useContext(AuthContext);
   const [data, setData] = useState({});
 
   const addGame = useCallback(() => {
@@ -55,8 +55,8 @@ export default function MyProfile() {
   }, [data]);
 
   useEffect(() => {
-    if(currentUserData) setData(currentUserData);
-  }, [currentUserData]);
+    if(currentUser && currentUserData) setData({uid: currentUser.uid, ...currentUserData});
+  }, [currentUser, currentUserData]);
 
   return {data, addGame, removeGame, changeGameFieldValue, addFile, removeFile};
 };

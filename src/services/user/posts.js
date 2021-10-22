@@ -1,5 +1,5 @@
 import { db } from "../../firebase";
-import { getDocReference } from "../index";
+import { getDocReference, generateReference } from "../index";
 
 const getSavedPosts = async (referenceList) => {
   var postList = [];
@@ -22,4 +22,9 @@ const unsave = async (Salvos, postUid, userUid) => {
   return await db.collection("usuários").doc(userUid).update({"Salvos": updated_saved_pool});
 };
 
-export { save, unsave, getSavedPosts };
+const getPostsByUserUid = async (useruid) => {
+  const data = await db.collection("posts").where("Usuario", "==", generateReference("usuários", useruid)).get();
+  return data.docs;
+};
+
+export { save, unsave, getSavedPosts, getPostsByUserUid };
