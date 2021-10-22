@@ -1,4 +1,5 @@
 import React, { useContext, useState } from "react";
+import { useHistory } from "react-router";
 import {
   IoSearch,
   IoHome,
@@ -35,6 +36,7 @@ import ProfilePhoto from "../../ProfilePhoto";
 
 export default function Menu() {
   const { currentUserData } = useContext(AuthContext);
+  const history = useHistory();
 
   const [showMenu, setShowMenu] = useState(false);
 
@@ -42,8 +44,11 @@ export default function Menu() {
     <>
       <ScrollLock isActive={showMenu} />
       <MenuWrapper showMenu={showMenu}>
-        <SearchBar>
-          <Filled removeSide="right">
+        <SearchBar onClick={() => history.push("buscar")} isVisible={history.location.pathname === "/buscar"}>
+          <Filled
+            removeSide="right"
+            borderColor={history.location.pathname === "/buscar" && "#bc54e0"}
+          >
             <input placeholder="Buscar" />
             <SearchIcon>
               <IoSearch />
@@ -51,7 +56,7 @@ export default function Menu() {
           </Filled>
         </SearchBar>
 
-        <MenuList>
+        <MenuList slideToTop={history.location.pathname === "/buscar"}>
           <li>
             <Link to="/" exact={true}>
               Página Inicial

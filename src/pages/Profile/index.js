@@ -8,7 +8,7 @@ import {
 } from "react-icons/md";
 
 import { ProfilePhoto } from "../../components";
-import Posts from "../../components/Posts";
+
 import {
   AddButton,
   BackgroundBanner,

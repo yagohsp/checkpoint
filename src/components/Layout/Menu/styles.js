@@ -49,6 +49,10 @@ export const SearchBar = styled.div`
   @media screen and (max-width: 997px) {
     display: none;
   }
+  width: 100%;
+  overflow: hidden;
+  transition: width .3s ease;
+  margin-left: auto;
   input {
     position: relative;
     font-size: 1.8rem;
@@ -59,14 +63,23 @@ export const SearchBar = styled.div`
       color: #999;
     }
   }
+  ${({isVisible}) => isVisible && css`{
+    width: 0%;
+  }`}
 `;
 
 export const MenuList = styled.ul`
   display: flex;
   flex-direction: column;
+  transition: transform .3s ease;
   margin: 1rem 0 3rem;
   li {
     position: relative;
+  }
+  @media screen and (min-width: 998px) {
+    ${({slideToTop}) => slideToTop && css`{
+      transform: translateY(-5rem);
+    }`}
   }
   @media screen and (max-width: 997px) {
     li {

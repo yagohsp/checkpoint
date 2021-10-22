@@ -1,22 +1,33 @@
-import React from 'react'
+import React from "react";
 import styled, { css } from "styled-components";
 
-export default function index({ children, removeSide }) {
+export default function index({
+  children,
+  removeSide,
+  borderColor,
+}) {
+  console.log(borderColor)
   return (
-    <Filled removeSide={removeSide}>
+    <Filled removeSide={removeSide} borderColor={borderColor}>
       {children}
     </Filled>
-  )
+  );
 }
 
 export const Filled = styled.div`
   height: 100%;
   width: 100%;
   position: relative;
-  background-color: #23012C;
-  border: 2px solid #834F95;
+  background-color: #23012c;
   color: #fff;
-  ${props => props.removeSide && css`
-    border-${props.removeSide}: none;
+  transition: border .15s ease;
+  ${({ borderColor }) =>
+    css`
+      border: 2px solid ${borderColor || "#834F95"};
+    `}
+  ${({ removeSide }) =>
+    removeSide &&
+    css`
+    border-${removeSide}: none;
   `}
-`
+`;
