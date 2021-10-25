@@ -77,7 +77,7 @@ export default function Login() {
           Entrar
         </Button>
 
-        <CreateAccount to="/signup">Criar conta</CreateAccount>
+        <CreateAccount to="/cadastro">Criar conta</CreateAccount>
       </LoginForm>
     </LoginWrapper>
   );

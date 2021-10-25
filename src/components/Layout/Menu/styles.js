@@ -80,6 +80,11 @@ export const MenuList = styled.ul`
     ${({slideToTop}) => slideToTop && css`{
       transform: translateY(-5rem);
     }`}
+    li {
+      &:nth-of-type(6) {
+        display: none;
+      }
+    }
   }
   @media screen and (max-width: 997px) {
     li {

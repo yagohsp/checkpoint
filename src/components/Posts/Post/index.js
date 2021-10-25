@@ -31,7 +31,7 @@ export default function PostElement(props) {
   return (
     <div>
       <PostContent>
-        <Poster>
+        <Poster style={!data.Poster ? { display: "none" } : null}>
           <img src={data?.Poster} alt="Poster" />
         </Poster>
         <div>
@@ -40,7 +40,7 @@ export default function PostElement(props) {
             {data?.Nome}
           </Profile>
           <Description>{post?.Conteudo}</Description>
-          <Buttons>
+          <Buttons style={!data.Poster ? { left: "1rem" } : null}>
             <LikeButton liked={liked} onClick={likeClick}>
               <BiLike />
               <LikeCount>{likeCount}</LikeCount>

@@ -47,7 +47,7 @@ export default function Login() {
   return (
     <SignupWrapper>
       <SignupForm onSubmit={handleSubmit(onSubmit)} autoComplete="off">
-        <Title>Signup</Title>
+        <Title>Cadastro</Title>
 
         <TextInput
           label="E-mail"

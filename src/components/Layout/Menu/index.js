@@ -98,7 +98,7 @@ export default function Menu() {
             </Link>
           </li>
           <li>
-            <Link to="/pesquisar">
+            <Link to="/buscar">
               Pesquisar
               <LinkIcon>
                 <GoSearch />
@@ -149,7 +149,7 @@ export default function Menu() {
         <Link to="/notificacoes">
           <IoNotifications />
         </Link>
-        <Link to="/pesquisar">
+        <Link to="/buscar">
           <GoSearch />
         </Link>
         <Link to="/mensagens">

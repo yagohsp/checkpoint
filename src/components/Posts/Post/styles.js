@@ -16,7 +16,6 @@ export const PostContent = styled(Filled)`
 
 export const Poster = styled.div`
   pointer-events: none;
-  margin-right: 2rem;
   @media screen and (min-width: 998px) {
     img {
       width: 12rem;
@@ -37,6 +36,7 @@ export const Profile = styled.div`
   display: flex;
   align-items: center;
   font-size: 1.8rem;
+  margin-left: 2rem;
   img {
     width: 4rem;
     height: 4rem;
@@ -46,6 +46,7 @@ export const Profile = styled.div`
 
 export const Description = styled.div`
   margin-top: 3rem;
+  margin-left: 2rem;
   @media screen and (min-width: 998px) {
     margin-bottom: 6rem;
   }

@@ -7,12 +7,6 @@ export const Container = styled.div`
 `;
 
 export const Filters = styled.div`
-  width: 0%;
-  overflow: hidden;
-  transition: width 0.4s ease;
-  position: absolute;
-  top: -2px;
-  left: -2px;
   display: flex;
   flex-direction: column;
   border: 2px solid #bc54e0;
@@ -20,11 +14,22 @@ export const Filters = styled.div`
     color: #fff;
     white-space: nowrap;
   }
-  ${({ animate }) =>
-    animate &&
-    css`
-      width: calc(100% + 4px);
-    `}
+  @media screen and (min-width: 998px) {
+    width: 0%;
+    overflow: hidden;
+    transition: width 0.4s ease;
+    position: absolute;
+    top: -2px;
+    left: -2px;
+    ${({ animate }) =>
+      animate &&
+      css`
+        width: calc(100% + 4px);
+      `}
+  }
+  @media screen and (max-width: 997px) {
+    margin-top: 4.5rem;
+  }
 `;
 
 export const GameFilters = styled.div`
@@ -51,20 +56,22 @@ export const NameFilter = styled(GameInputWrapper)`
 
 export const Results = styled.div`
   border-bottom: 1px solid #834f95;
-  padding-top: 9rem;
   transition: padding-top 0.4s ease;
-  ${({ showAllFilters }) =>
-    showAllFilters &&
-    css`
-      padding-top: 27rem;
-    `}
+  @media screen and (min-width: 998px) {
+    padding-top: 9rem;
+    ${({ showAllFilters }) =>
+      showAllFilters &&
+      css`
+        padding-top: 27rem;
+      `}
+  }
 `;
 
 export const Input = styled.input`
   width: 100%;
   outline: 0;
   padding-left: 1.5rem;
-  padding-top: 1.8rem;
+  padding-top: 2.1rem;
   &:focus + label,
   &:not(:placeholder-shown) + label {
     transform: translateY(-120%) translateX(-0.4rem);
@@ -100,24 +107,37 @@ export const Nickname = styled.p`
 
 export const UserData = styled.div`
   display: flex;
-  align-items: center;
-  margin-left: 3rem;
+  @media screen and (min-width: 998px) {
+    align-items: center;
+    margin-left: 3rem;
+  }
+  @media screen and (max-width: 997px) {
+    flex-direction: column;
+  }
 `;
 
 export const UserStats = styled.div`
   display: flex;
-  flex-direction: column;
   div {
     display: flex;
     align-items: center;
     color: #fff;
-    &:not(:last-of-type) {
-      margin-bottom: 1rem;
-    }
     svg {
       height: 2.2rem;
       width: 2.2rem;
       margin-right: 0.6rem;
+    }
+  }
+  @media screen and (min-width: 998px) {
+    flex-direction: column;
+    div:not(:last-of-type) {
+      margin-bottom: 1rem;
+    }
+  }
+  @media screen and (max-width: 997px) {
+    margin-bottom: 1rem;
+    > div:first-of-type {
+      margin-right: 1rem;
     }
   }
 `;
@@ -125,15 +145,19 @@ export const UserStats = styled.div`
 export const GameStats = styled.div`
   margin-left: 3rem;
   p {
-    width: 25rem;
     display: flex;
     color: #fff;
     text-align: left;
+    margin-top: 0.3rem;
     strong {
       display: block;
       width: 50%;
       margin-left: 1rem;
-      margin-top: .3rem;
+    }
+  }
+  @media screen and (min-width: 998px) {
+    p {
+      width: 25rem;
     }
   }
 `;
