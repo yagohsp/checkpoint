@@ -55,7 +55,6 @@ export default function Game(props={}) {
                 <div>
                     <label>Nível</label>
                     <input 
-                        type="number"
                         value={data?.Nivel} 
                         onChange={(event) => changeGameFieldValue({event, field: "Nivel"})} 
                     />
@@ -63,7 +62,6 @@ export default function Game(props={}) {
                 <div>
                     <label>Rank</label>
                     <input 
-                        type="number"
                         value={data?.Rank} 
                         onChange={(event) => changeGameFieldValue({event, field: "Rank"})} 
                     />
@@ -78,7 +76,6 @@ export default function Game(props={}) {
                 <div>
                     <label>Tempo de jogo</label>
                     <input 
-                        type="number"
                         value={data?.TempoJogo} 
                         onChange={(event) => changeGameFieldValue({event, field: "TempoJogo"})} 
                     />
@@ -86,7 +83,6 @@ export default function Game(props={}) {
                 <div>
                     <label>Joga desde</label>
                     <input 
-                        type="number"
                         value={data?.JogaDesde} 
                         onChange={(event) => changeGameFieldValue({event, field: "JogaDesde"})} 
                     />

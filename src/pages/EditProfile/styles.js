@@ -236,6 +236,9 @@ export const GameTitle = styled.h3`
   input {
     outline: 0;
     color: #fff;
+    &::placeholder{
+      color: #acacac;
+    }
   }
   button {
     &:hover {

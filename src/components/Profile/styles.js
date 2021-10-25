@@ -1,5 +1,5 @@
 import { Link } from "react-router-dom";
-import styled from "styled-components";
+import styled, { css } from "styled-components";
 import { Button } from "../../components";
 
 export const Container = styled.div`
@@ -136,4 +136,72 @@ export const AddButton = styled(Button)`
   @media screen and (max-width: 997px) {
     margin-top: 2rem;
   }
+`;
+
+export const Tabs = styled.div`
+  display: flex;
+  margin-top: 2rem;
+`;
+
+export const TabButton = styled.button`
+  z-index: 0;
+  width: 50%;
+  font-size: 2.3rem;
+  color: #fff;
+  font-weight: 500;
+  background-color: rgba(35, 1, 44, 0.3);
+  border: 2px solid rgba(131, 79, 149, 0.5);
+  color: rgba(255, 255, 255, 0.3);
+  border-bottom: 2px solid rgba(131, 79, 149, 1);
+  padding: 1.2rem 0;
+
+  margin-top: 0;
+
+  transition: border 0.15s ease, background-color 0.15s ease, color 0.15s ease;
+  ${({ active }) =>
+    active &&
+    css`
+      background-color: rgba(35, 1, 44, 0.75);
+      border: 2px solid rgba(131, 79, 149, 1);
+      border-bottom: 2px solid rgba(131, 79, 149, 0);
+      color: #fff;
+    `}
+`;
+
+export const Content = styled.div`
+  position: relative;
+  background-color: rgba(35, 1, 44, 0.75);
+  padding-left: 2px;
+  border-left: 2px solid rgba(131, 79, 149, 1);
+  border-right: 2px solid rgba(131, 79, 149, 1);
+  border-bottom: 2px solid rgba(131, 79, 149, 1);
+  border-top: 0;
+  > div:first-of-type {
+    margin-top: 0;
+  }
+  ${({ showTab }) =>
+    showTab === "posts" &&
+    css`
+      div {
+        background-color: transparent;
+      }
+      > div > div {
+        border-bottom: 2px solid rgba(131, 79, 149, 1);
+        > div {
+          border-bottom: 0;
+          &:first-of-type {
+            border-top: 0;
+            margin-top: 0;
+            @media screen and (max-width: 997px) {
+              > div:first-of-type {
+                display: none;
+              }
+            }
+          }
+          form {
+            margin-bottom: 1rem;
+          }
+        }
+      }
+    `}
 `;
