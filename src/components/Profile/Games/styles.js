@@ -22,6 +22,7 @@ export const GameStats = styled.div`
   border-bottom: 2px solid #834f95;
   div {
     width: 100%;
+    padding: 0.5rem 0;
     label {
       display: block;
       text-align: center;
@@ -38,7 +39,6 @@ export const GameStats = styled.div`
   @media screen and (max-width: 997px) {
     flex-direction: column;
     div {
-      padding: .5rem 0;
       &:not(:last-of-type) {
         border-bottom: 2px solid #834f95;
       }
