@@ -50,7 +50,7 @@ export const GameInputWrapper = styled.div`
   border-bottom: 1px solid rgba(188, 84, 224, 0.4);
 `;
 
-export const NameFilter = styled(GameInputWrapper)`
+export const FieldFilter = styled(GameInputWrapper)`
   border-bottom: 2px solid rgba(188, 84, 224, 0.75);
 `;
 

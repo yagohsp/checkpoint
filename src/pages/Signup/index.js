@@ -1,15 +1,17 @@
-import React, { useEffect, useState, useContext } from "react";
+import React, { useEffect, useState, useContext, useRef } from "react";
 import { useHistory } from "react-router-dom";
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
+import ReCAPTCHA from "react-google-recaptcha";
 
-import { TextInput, Button } from "../../components";
+import { TextInput, Button, ErrorLabel } from "../../components";
 import { LoginAccount, SignupForm, SignupWrapper, Title } from "./styles";
 import signupValidation from "./signup-validation";
 import { createUser } from "../../services/user/authentication";
 import { AuthContext } from "../../providers/Auth";
 
 export default function Login() {
+  const recaptchaRef = useRef();
   const {currentUser} = useContext(AuthContext);
   const [requestError, setRequestError] = useState({});
   const history = useHistory();
@@ -31,6 +33,11 @@ export default function Login() {
   });
 
   const onSubmit = async ({ email, password }) => {
+    const token = recaptchaRef.current?.getValue();
+    if(!token) {
+      setRequestError({recaptcha: "Por favor, verifique o recaptcha acima"});
+      return ;
+    }
     setIsLoading(true);
     const response = await createUser(email, password);
     setIsLoading(false);
@@ -81,9 +88,17 @@ export default function Login() {
           {...register("passwordConfirmation")}
         />
 
+        <ReCAPTCHA
+          ref={recaptchaRef}
+          sitekey="6Lfj0vIcAAAAADafJvlC85EzFYAj4nWN4uldxWZM"
+          onChange={() => setRequestError({})}
+        />
+        <ErrorLabel error={requestError.recaptcha} />
+
         <Button
           isLoading={isLoading}
           error={requestError.type === "default" && requestError.message}
+          
         >
           Cadastrar-se e entrar
         </Button>

@@ -44,7 +44,7 @@ export default function Menu() {
     <>
       <ScrollLock isActive={showMenu} />
       <MenuWrapper showMenu={showMenu}>
-        <SearchBar onClick={() => history.push("buscar")} isVisible={history.location.pathname === "/buscar"}>
+        <SearchBar onClick={() => history.push("/buscar")} isVisible={history.location.pathname === "/buscar"}>
           <Filled
             removeSide="right"
             borderColor={history.location.pathname === "/buscar" && "#bc54e0"}

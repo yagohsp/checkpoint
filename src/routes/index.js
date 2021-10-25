@@ -10,6 +10,7 @@ import {
   Search,
   MyProfile,
   Notifications,
+  Profile,
 } from "../pages";
 import PrivateRoute from "./PrivateRoute";
 
@@ -29,6 +30,7 @@ export default function Routes() {
         <PrivateRoute path="/editar-perfil" component={EditProfile} />
         <PrivateRoute path="/buscar" component={Search} />
         <PrivateRoute path="/notificacoes" component={Notifications} />
+        <PrivateRoute path="/perfil/:uid" component={Profile} />
         <PrivateRoute path="/" component={Home} />
       </Switch>
     </Router>

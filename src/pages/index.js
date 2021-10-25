@@ -7,5 +7,6 @@ import EditProfile from "./EditProfile";
 import Search from "./Search";
 import MyProfile from "./MyProfile";
 import Notifications from "./Notifications";
+import Profile from "./Profile";
 
-export { Home, Saved, Login, Signup, SetupProfile, EditProfile, Search, MyProfile, Notifications };
+export { Home, Saved, Login, Signup, SetupProfile, EditProfile, Search, MyProfile, Notifications, Profile };

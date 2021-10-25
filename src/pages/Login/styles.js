@@ -11,7 +11,7 @@ export const LoginWrapper = styled.div`
 `;
 
 export const LoginForm = styled.form`
-  width: 32rem;
+  width: 36rem;
   display: flex;
   flex-direction: column;
   align-items: center;
