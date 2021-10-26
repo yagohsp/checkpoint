@@ -1,8 +1,5 @@
 import React from "react";
-import { AiOutlineClockCircle } from "react-icons/ai";
-import { IoGameControllerOutline } from "react-icons/io5";
 
-import { ProfilePhoto } from "../../components";
 import UiHook from "../../hooks/search/ui";
 import UserHook from "../../hooks/search/user";
 import GameHook from "../../hooks/search/game";
@@ -12,13 +9,11 @@ import {
   Input,
   Label,
   Results,
-  User,
-  Nickname,
-  UserData,
-  FieldFilter,
-  UserStats,
-  GameStats,
+  NameFilter,
+  GameFilters,
+  GameInputWrapper
 } from "./styles";
+import User from "./User";
 
 export default function Search() {
   const {show, loading, ...rest} = UiHook();
@@ -27,6 +22,7 @@ export default function Search() {
     changeSearch: setUserSearch
   } = UserHook(rest);
   const {
+    search: game,
     data: gameData,
     changeSearch: setGameSearch
   } = GameHook(rest);
@@ -36,62 +32,62 @@ export default function Search() {
   return (
     <Container>
       <Filters animate={true}>
-        <FieldFilter>
+        <NameFilter>
           <Input
             placeholder=" "
             onChange={setUserSearch}
-            disabled={loading}
           />
           <Label>Nome</Label>
-        </FieldFilter>
-        <FieldFilter>
-          <Input
-            placeholder=" "
-            onChange={setGameSearch}
-            disabled={loading}
-          />
-          <Label>Jogos</Label>
-        </FieldFilter>
+        </NameFilter>
+
+        <GameFilters showAllFilters={game.name !== ""}>
+          <GameInputWrapper>
+            <Input
+              placeholder=" "
+              onChange={(e) => setGameSearch("name", e)}
+            />
+            <Label>Jogo</Label>
+          </GameInputWrapper>
+          <GameInputWrapper>
+            <Input
+              placeholder=" "
+              onChange={(e) => setGameSearch("level", e)}
+            />
+            <Label>Nível</Label>
+          </GameInputWrapper>
+          <GameInputWrapper>
+            <Input
+              placeholder=" "
+              onChange={(e) => setGameSearch("rank", e)}
+            />
+            <Label>Rank</Label>
+          </GameInputWrapper>
+          <GameInputWrapper>
+            <Input
+              placeholder=" "
+              onChange={(e) => setGameSearch("playedHours", e)}
+            />
+            <Label>Horas de jogo</Label>
+          </GameInputWrapper>
+          <GameInputWrapper>
+            <Input
+              placeholder=" "
+              onChange={(e) => setGameSearch("gamingMode", e)}
+            />
+            <Label>Modo de jogo</Label>
+          </GameInputWrapper>
+        </GameFilters>
       </Filters>
 
-      <Results showAllFilters={false}>
+      <Results showAllFilters={game.name !== ""}>
         {
           show === "users" ?
             <>
-              {userData.map(
-                (user, index) => 
-                <User key={index} to={`perfil/${user.uid}`}>
-                  <ProfilePhoto src={user?.Foto} />
-                  <Nickname>{user?.Nome}</Nickname>
-                  <UserData>
-                    <UserStats>
-                      <div>
-                        <AiOutlineClockCircle />
-                        <p>
-                          <strong>{user?.gameHours}</strong> horas de jogo
-                        </p>
-                      </div>
-                      <div>
-                        <IoGameControllerOutline />
-                        <p>
-                          <strong>{user?.gameQuantity}</strong> jogos
-                        </p>
-                      </div>
-                    </UserStats>
-                    <GameStats>
-                        <p>Jogo: <strong>{user?.game?.Jogo}</strong></p>
-                        <p>Nível: <strong>{user?.game?.Nivel}</strong></p>
-                        <p>Rank: <strong>{user?.game?.Rank}</strong></p>
-                        <p>Horas de jogo: <strong>{user?.game?.TempoJogo}</strong></p>
-                        <p>Modo de jogo: <strong>{user?.game?.ModoJogo}</strong></p>
-                    </GameStats>
-                  </UserData>
-                </User>
-              )}
+              {userData.map((user, index) => <User key={index} data={user} />)}
             </>
           :
             <>
-              {/* FAZER EXIBIÇÃO DOS GAMES AQUI */}
+              {gameData.map((user, index) => <User key={index} data={user} />)}
             </>
         }
       </Results>
