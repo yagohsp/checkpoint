@@ -1,3 +1,4 @@
+import { Link } from "react-router-dom";
 import styled from "styled-components";
 
 import { Filled } from "../../Filled";
@@ -32,7 +33,7 @@ export const Poster = styled.div`
   }
 `;
 
-export const Profile = styled.div`
+export const Profile = styled(Link)`
   display: flex;
   align-items: center;
   font-size: 1.8rem;

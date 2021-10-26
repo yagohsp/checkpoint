@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 import { AiOutlineClockCircle } from "react-icons/ai";
 import { IoGameControllerOutline } from "react-icons/io5";
 

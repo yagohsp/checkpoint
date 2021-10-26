@@ -35,7 +35,7 @@ export default function PostElement(props) {
           <img src={data?.Poster} alt="Poster" />
         </Poster>
         <div>
-          <Profile>
+          <Profile to="/">
             <img src={data?.Foto} alt="Foto de perfil" />
             {data?.Nome}
           </Profile>

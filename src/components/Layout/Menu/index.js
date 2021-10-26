@@ -1,5 +1,6 @@
 import React, { useContext, useState } from "react";
 import { useHistory } from "react-router";
+import { Link as RouterLink } from "react-router-dom";
 import {
   IoSearch,
   IoHome,
@@ -116,8 +117,10 @@ export default function Menu() {
         </MenuList>
 
         <Profile>
-          <ProfilePhoto />
-          <span>{currentUserData?.Nome}</span>
+          <RouterLink to="/meu-perfil">
+            <ProfilePhoto />
+            <span>{currentUserData?.Nome}</span>
+          </RouterLink>
           <MoreButton onClick={() => setShowMenu((state) => !state)}>
             <BsThreeDots />
           </MoreButton>

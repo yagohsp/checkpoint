@@ -162,6 +162,10 @@ export const Profile = styled.div`
   color: #fff;
   border-right: none !important;
   padding: 1.1rem;
+  a{
+    display: flex;
+    align-items: center;
+  }
   @media screen and (min-width: 998px) {
     background-color: #23012c;
     border: 2px solid #834f95;
