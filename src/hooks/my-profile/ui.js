@@ -1,21 +1,13 @@
-import { useState, useCallback, useRef, useContext, useEffect } from "react";
-
-import { AuthContext } from "../../providers/Auth";
+import { useState, useCallback, useRef } from "react";
 
 export default function Ui() {
-    const {currentUserData} = useContext(AuthContext);
     const containerRef = useRef(null);
     const [showBackground, setShowBackground] = useState(false);
-    const [excludedUids, setExcludedUids] = useState([]);
+    const [showTab, setShowTab] = useState("posts");
 
     const changeShowBackground = useCallback((show) => setShowBackground(show), []);
 
-    useEffect(() => {
-        if(!currentUserData) return ;
-        var exclude = currentUserData.AmigosUid;
-        exclude.push(currentUserData.uid);
-        setExcludedUids(exclude);
-    }, [currentUserData]);
+    const changeTab = useCallback((tab) => setShowTab(tab), []);
 
-    return {containerRef, showBackground, changeShowBackground, excludedUids};
+    return {containerRef, showBackground, changeShowBackground, showTab, changeTab};
 };

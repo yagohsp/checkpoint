@@ -1,6 +1,6 @@
 import { useState, useEffect, useCallback } from "react";
 
-import { getUser } from "../services/user/friends";
+import { getUserWithStatistics } from "../services/user/friends";
 import { getPostsByUserUid } from "../services/user/posts";
 
 export default function Profile(props={}) {
@@ -14,17 +14,9 @@ export default function Profile(props={}) {
     setLoading(true);
     var data = {
       uid: uid,
-      user: await getUser(uid),
-      posts: await getPostsByUserUid(uid),
-      statistics: {
-        gameHours: 0,
-        friendsQuantity: 0,
-        gamesQuantity: 0
-      }
+      user: await getUserWithStatistics(uid),
+      posts: await getPostsByUserUid(uid)
     };
-    data.user?.Jogos.forEach((game) => data.statistics.gameHours = data.statistics.gameHours + parseInt(game?.TempoJogo));
-    data.statistics.friendsQuantity = data.user ? data.user.Amigos.length : 0;
-    data.statistics.gamesQuantity = data.user ? data.user.Jogos.length : 0;
     setData(data);
     setLoading(false);
   }, [uid]);

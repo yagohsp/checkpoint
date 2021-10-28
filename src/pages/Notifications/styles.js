@@ -1,5 +1,5 @@
 import { Link } from "react-router-dom";
-import styled from "styled-components";
+import styled, { css } from "styled-components";
 import { Button } from "../../components";
 
 export const Container = styled.div`
@@ -8,7 +8,19 @@ export const Container = styled.div`
   }
 `;
 
-export const Notification = styled(Link)`
+export const Status = styled.div`
+  color: ${({status}) => status ? "#8bc34a" : "#f44336" };
+  align-items: center;
+  width: 12rem;
+  display: flex;
+  svg {
+    margin-right: 1rem;
+    width: 2rem;
+    height: 2rem;
+  }
+`;
+
+const NotificationStyles = css`
   padding: 1.5rem;
   border-bottom: 2px solid #834f95;
   img {
@@ -21,6 +33,14 @@ export const Notification = styled(Link)`
   @media screen and (max-width: 997px) {
     display: block;
   }
+`;
+
+export const Notification = styled.div`
+  ${NotificationStyles}
+`;
+
+export const NotificationLink = styled(Link)`
+  ${NotificationStyles}
 `;
 
 export const Profile = styled.div`

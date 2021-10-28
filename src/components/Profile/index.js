@@ -7,7 +7,8 @@ import {
   MdPeopleOutline,
 } from "react-icons/md";
 
-import Ui from "../../hooks/my-profile/ui";
+import UiHook from "../../hooks/my-profile/ui";
+import ProfileHook from "../../hooks/my-profile/profile";
 import { ProfilePhoto } from "../../components";
 import Posts from "../Posts";
 import Games from "./Games";
@@ -28,11 +29,15 @@ import {
 } from "./styles";
 
 export default function Profile(props) {
-  const { containerRef, showBackground, changeShowBackground, excludedUids } =
-    Ui();
   const { data, allowEdit } = props;
-
-  const [showTab, setShowTab] = useState("posts");
+  const { 
+    containerRef, 
+    showBackground, 
+    changeShowBackground, 
+    showTab, 
+    changeTab
+  } = UiHook();
+  const {conditionalAddUids, addFriend, loading} = ProfileHook({uid: data.uid});
 
   return (
     <Container ref={containerRef}>
@@ -68,23 +73,23 @@ export default function Profile(props) {
           <div>
             <AiOutlineClockCircle />
             <p>
-              <strong>{data.statistics?.gameHours}</strong> horas de jogo
+              <strong>{data.user?.statistics?.gameHours}</strong> horas de jogo
             </p>
           </div>
           <div>
             <IoGameControllerOutline />
             <p>
-              <strong>{data.statistics?.gamesQuantity}</strong> jogos
+              <strong>{data.user?.statistics?.gamesQuantity}</strong> jogos
             </p>
           </div>
           <div>
             <MdPeopleOutline />
             <p>
-              <strong>{data.statistics?.friendsQuantity}</strong> amigos
+              <strong>{data.user?.statistics?.friendsQuantity}</strong> amigos
             </p>
           </div>
-          {!excludedUids.includes(data?.uid) && (
-            <AddButton>
+          {!conditionalAddUids.hide.includes(data?.uid) && (
+            <AddButton onClick={addFriend}>
               <MdOutlineGames /> Adicionar
             </AddButton>
           )}
@@ -93,13 +98,13 @@ export default function Profile(props) {
       <Tabs>
         <TabButton
           active={showTab === "posts"}
-          onClick={() => setShowTab("posts")}
+          onClick={() => changeTab("posts")}
         >
           Publicações
         </TabButton>
         <TabButton
           active={showTab === "games"}
-          onClick={() => setShowTab("games")}
+          onClick={() => changeTab("games")}
         >
           Jogos
         </TabButton>

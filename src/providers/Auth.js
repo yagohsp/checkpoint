@@ -11,7 +11,6 @@ export const AuthProvider = ({ children }) => {
   const [currentUserData, setCurrentUserData] = useState(null);
   const [loading, setLoading] = useState(true);
   const unsubscribe = useRef(null);
-  const initialized = useRef(false);
 
   const setupUserData = useCallback(async (uid, user) => {
     var data = await getUser(uid);
@@ -36,9 +35,7 @@ export const AuthProvider = ({ children }) => {
     });
   }, [setupUserData]);
 
-  useEffect(() => {
-    if(initialized.current) return ;
-    initialized.current = true;
+  useEffect(() => {    
     firebase.auth().onAuthStateChanged(async (user) => {
       setLoading(true);
       if(unsubscribe.current) unsubscribe.current();
@@ -51,7 +48,7 @@ export const AuthProvider = ({ children }) => {
       }
       setLoading(false);
     });
-  }, [createTrigger, loading]);
+  }, []);
 
   return (
     <AuthContext.Provider

@@ -47,7 +47,7 @@ export default function Login() {
         setRequestError({});
       }, 2500);
     } else {
-      history.go(0);
+      history.push("/");
     }
   };
 

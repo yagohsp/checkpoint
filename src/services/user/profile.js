@@ -11,7 +11,12 @@ const createProfile = async (name, photo) => {
       "Nome": name,
       "Poster": null,
       "Salvos": [],
-      "Descricao": ""
+      "Descricao": "",
+      "Pedidos": {
+        "Recebidos": [],
+        "Enviados": []
+      },
+      "Notificacoes": []
     })
     .catch((error) => {
       switch (error.code) {

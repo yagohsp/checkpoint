@@ -1,47 +1,16 @@
 import React from "react";
-import { ProfilePhoto } from "../../components";
+
+import NotificationsListHook from "../../hooks/notifications/list";
+import Notification from "./NotificationsTypes/";
 import {
-  Notification,
-  Container,
-  AcceptButton,
-  RejectButton,
-  ButtonsWrapper,
-  Profile,
+  Container
 } from "./styles";
 
 export default function Notifications() {
+  const {data} = NotificationsListHook();
   return (
     <Container>
-      <Notification to="/">
-        <Profile>
-          <ProfilePhoto />
-          <p>
-            <strong>Yago</strong> quer te adicionar como amigo
-          </p>
-        </Profile>
-        <ButtonsWrapper>
-          <AcceptButton>Aceitar</AcceptButton>
-          <RejectButton>Recusar</RejectButton>
-        </ButtonsWrapper>
-      </Notification>
-
-      <Notification to="/">
-        <Profile>
-          <ProfilePhoto />
-          <p>
-            <strong>Yago</strong> curtiu sua publicação
-          </p>
-        </Profile>
-      </Notification>
-
-      <Notification to="/">
-        <Profile>
-          <ProfilePhoto />
-          <p>
-            <strong>Yago</strong> comentou na sua publicação
-          </p>
-        </Profile>
-      </Notification>
+      {data.map((notification, index) => <Notification key={index} id={index} data={notification} />)}
     </Container>
   );
 }

@@ -27,8 +27,6 @@ export default function Search() {
     changeSearch: setGameSearch
   } = GameHook(rest);
 
-  console.warn(gameData);
-
   return (
     <Container>
       <Filters animate={true}>
