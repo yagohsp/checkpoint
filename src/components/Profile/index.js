@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 import { AiOutlineClockCircle, AiOutlineEye } from "react-icons/ai";
 import { IoGameControllerOutline } from "react-icons/io5";
 import {
@@ -8,7 +8,6 @@ import {
 } from "react-icons/md";
 
 import UiHook from "../../hooks/my-profile/ui";
-import ProfileHook from "../../hooks/my-profile/profile";
 import { ProfilePhoto } from "../../components";
 import Posts from "../Posts";
 import Games from "./Games";
@@ -29,7 +28,12 @@ import {
 } from "./styles";
 
 export default function Profile(props) {
-  const { data, allowEdit } = props;
+  const { 
+    data, 
+    conditionalAddUids,
+    addFriend,
+    allowEdit 
+  } = props;
   const { 
     containerRef, 
     showBackground, 
@@ -37,7 +41,6 @@ export default function Profile(props) {
     showTab, 
     changeTab
   } = UiHook();
-  const {conditionalAddUids, addFriend, loading} = ProfileHook({uid: data.uid});
 
   return (
     <Container ref={containerRef}>
@@ -111,7 +114,7 @@ export default function Profile(props) {
       </Tabs>
       <Content showTab={showTab}>
         {showTab === "posts" && data.posts && <Posts data={data.posts} />}
-        {showTab === "games" && data.posts && <Games />}
+        {showTab === "games" && data.user?.Jogos && <Games data={data.user.Jogos} />}
       </Content>
     </Container>
   );

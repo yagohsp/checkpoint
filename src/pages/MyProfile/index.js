@@ -6,9 +6,9 @@ import ProfileHook from "../../hooks/profile";
 
 export default function MyProfile() {
   const {currentUser} = useContext(AuthContext);
-  const {data, loading} = ProfileHook({uid: currentUser?.uid});
+  const {loading, ...rest} = ProfileHook({uid: currentUser?.uid});
 
   return (
-    <Profile data={data} allowEdit={true} />
+    <Profile allowEdit={true} {...rest} />
   );
 }

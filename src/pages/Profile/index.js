@@ -6,9 +6,9 @@ import ProfileHook from "../../hooks/profile";
 
 export default function MyProfile() {
   const { uid } = useParams();
-  const {data, loading} = ProfileHook({uid});
+  const {loading, ...rest} = ProfileHook({uid});
 
   return (
-    <Profile data={data} allowEdit={false} />
+    <Profile allowEdit={false} {...rest} />
   );
 }
