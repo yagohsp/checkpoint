@@ -30,26 +30,30 @@ import {
 
 export default function Profile(props) {
   const { data, allowEdit } = props;
-  const { 
-    containerRef, 
-    showBackground, 
-    changeShowBackground, 
-    showTab, 
-    changeTab
+  const {
+    containerRef,
+    showBackground,
+    changeShowBackground,
+    showTab,
+    changeTab,
   } = UiHook();
-  const {conditionalAddUids, addFriend, loading} = ProfileHook({uid: data.uid});
+  const { conditionalAddUids, addFriend, loading } = ProfileHook({
+    uid: data.uid,
+  });
 
   return (
     <Container ref={containerRef}>
-      <BackgroundBanner
-        style={{
-          width: containerRef.current ? containerRef.current.clientWidth : 0,
-          opacity: showBackground ? 0.9 : 0.15,
-          zIndex: showBackground ? 1 : 0,
-        }}
-      >
-        <img src={data.user?.Poster} alt="banner" />
-      </BackgroundBanner>
+      {data.user?.Poster && (
+        <BackgroundBanner
+          style={{
+            width: containerRef.current ? containerRef.current.clientWidth : 0,
+            opacity: showBackground ? 0.9 : 0.15,
+            zIndex: showBackground ? 1 : 0,
+          }}
+        >
+          <img src={data.user?.Poster} alt="banner" />
+        </BackgroundBanner>
+      )}
       <User>
         <ImageAndName>
           <ProfilePhoto src={data.user?.Foto} />
@@ -57,14 +61,16 @@ export default function Profile(props) {
         </ImageAndName>
         <Description>{data.user?.Descricao}</Description>
         <Stats>
-          <ShowBackgroundButton
-            onMouseEnter={() => changeShowBackground(true)}
-            onMouseLeave={() => changeShowBackground(false)}
-            onClick={() => changeShowBackground((state) => true)}
-            onBlur={() => changeShowBackground((state) => false)}
-          >
-            <AiOutlineEye />
-          </ShowBackgroundButton>
+          {data.user?.Poster && (
+            <ShowBackgroundButton
+              onMouseEnter={() => changeShowBackground(true)}
+              onMouseLeave={() => changeShowBackground(false)}
+              onClick={() => changeShowBackground((state) => true)}
+              onBlur={() => changeShowBackground((state) => false)}
+            >
+              <AiOutlineEye />
+            </ShowBackgroundButton>
+          )}
           {allowEdit && (
             <EditProfileLink to="/editar-perfil">
               <MdOutlineModeEditOutline />

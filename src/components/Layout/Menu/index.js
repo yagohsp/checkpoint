@@ -59,7 +59,7 @@ export default function Menu() {
 
         <MenuList slideToTop={history.location.pathname === "/buscar"}>
           <li>
-            <Link to="/" exact={true}>
+            <Link onClick={() => setShowMenu(false)} to="/" exact={true}>
               Página Inicial
               <LinkIcon>
                 <IoHome />
@@ -67,7 +67,7 @@ export default function Menu() {
             </Link>
           </li>
           <li>
-            <Link to="/notificacoes">
+            <Link onClick={() => setShowMenu(false)} to="/notificacoes">
               Notificações
               <LinkIcon>
                 <IoNotifications />
@@ -75,7 +75,7 @@ export default function Menu() {
             </Link>
           </li>
           <li>
-            <Link to="/meu-perfil">
+            <Link onClick={() => setShowMenu(false)} to="/meu-perfil">
               Meu perfil
               <LinkIcon>
                 <IoPerson />
@@ -83,7 +83,7 @@ export default function Menu() {
             </Link>
           </li>
           <li>
-            <Link to="/salvos">
+            <Link onClick={() => setShowMenu(false)} to="/salvos">
               Salvos
               <LinkIcon>
                 <IoCloudy />
@@ -91,7 +91,7 @@ export default function Menu() {
             </Link>
           </li>
           <li>
-            <Link to="/destaques">
+            <Link onClick={() => setShowMenu(false)} to="/destaques">
               Destaques
               <LinkIcon>
                 <BiTrendingUp />
@@ -99,7 +99,7 @@ export default function Menu() {
             </Link>
           </li>
           <li>
-            <Link to="/buscar">
+            <Link onClick={() => setShowMenu(false)} to="/buscar">
               Pesquisar
               <LinkIcon>
                 <GoSearch />
