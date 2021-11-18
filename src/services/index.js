@@ -15,7 +15,7 @@ const createTrigger = async (path) => {
 };
 
 const uploadImageToBucket = async (file) => {
-  const storageRef = firebase.storage("gs://checkpoint-socialnetwork.appspot.com").ref();
+  const storageRef = firebase.storage("gs://checkpoint-social-network-2021.appspot.com").ref();
   const metadata = {contentType: file.type};
   const fileRef = storageRef.child(file.name);
   const uploadTaskSnapshot = await fileRef.put(file, metadata);

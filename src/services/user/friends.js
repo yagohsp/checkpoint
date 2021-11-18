@@ -30,7 +30,7 @@ const getUserWithStatistics = async (uid) => {
         },
         ...data?.data()
     };
-    data?.Jogos.forEach((game) => data.statistics.gameHours = data.statistics.gameHours + parseInt(game?.TempoJogo));
+    data?.Jogos.forEach((game) => data.statistics.gameHours = data.statistics.gameHours + parseInt(game?.TempoJogo) || 0);
     data.statistics.friendsQuantity = data.Amigos ? data.Amigos.length : 0;
     data.statistics.gamesQuantity = data.Jogos ? data.Jogos.length : 0;
     return data;

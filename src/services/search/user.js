@@ -13,7 +13,7 @@ const getUsers = async (search="") => {
     };
     user["gameQuantity"] = user?.Jogos.length;
     user["game"] = user?.Jogos[0] ? user.Jogos[0] : {};
-    const game_promises = user?.Jogos.map(async (game) => user["gameHours"] = user.gameHours + parseInt(game.TempoJogo));
+    const game_promises = user?.Jogos.map(async (game) => user["gameHours"] = user.gameHours + parseInt(game.TempoJogo) || 0);
     await Promise.all(game_promises);
     data.push(user);
   });
@@ -45,7 +45,7 @@ const getUsersByGames = async (search_terms={}) => {
     user["gameQuantity"] = user?.Jogos.length;
     user["game"] = user?.Jogos[0] ? user.Jogos[0] : {};
     const game_promises = user?.Jogos.map(async (game) => {
-      user["gameHours"] = user.gameHours + parseInt(game.TempoJogo);
+      user["gameHours"] = user.gameHours + parseInt(game.TempoJogo) || 0;
       const conditional = [
         game.Jogo && name && String(game.Jogo).includes(name),
         game.Nivel && level && String(game.Nivel).includes(level),
