@@ -31,6 +31,7 @@ export default function Routes() {
         <PrivateRoute path="/buscar" component={Search} />
         <PrivateRoute path="/notificacoes" component={Notifications} />
         <PrivateRoute path="/perfil/:uid" component={Profile} />
+        <PrivateRoute path="/mensagens" component={Home} />
         <PrivateRoute path="/" component={Home} />
       </Switch>
     </Router>

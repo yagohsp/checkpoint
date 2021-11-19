@@ -91,7 +91,7 @@ export const MenuList = styled.ul`
       margin-top: 15px;
       &:nth-of-type(1),
       &:nth-of-type(2),
-      &:nth-of-type(6) {
+      &:nth-of-type(5) {
         display: none;
       }
     }

@@ -90,14 +90,14 @@ export default function Menu() {
               </LinkIcon>
             </Link>
           </li>
-          <li>
+          {/* <li>
             <Link onClick={() => setShowMenu(false)} to="/destaques">
               Destaques
               <LinkIcon>
                 <BiTrendingUp />
               </LinkIcon>
             </Link>
-          </li>
+          </li> */}
           <li>
             <Link onClick={() => setShowMenu(false)} to="/buscar">
               Pesquisar

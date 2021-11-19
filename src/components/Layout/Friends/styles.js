@@ -1,7 +1,6 @@
 import styled from "styled-components";
 
 export const Wrapper = styled.div`
-  max-width: 33rem;
   width: 100%;
   height: calc(100vh - 3rem);
   position: sticky;
@@ -10,4 +9,7 @@ export const Wrapper = styled.div`
   flex-direction: column;
   align-self: flex-start;
   overflow: hidden;
+  @media screen and (min-width: 998px) {
+    max-width: 33rem;
+  }
 `;
